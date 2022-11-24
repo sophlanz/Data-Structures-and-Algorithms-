@@ -1,3 +1,5 @@
+//Time Colmplexity - O(n^2)
+//Space Complexity O(n)
 function swap(arr, index1, index2) {
     //declare temp to hold first index before we change
     let temp = arr[index1];

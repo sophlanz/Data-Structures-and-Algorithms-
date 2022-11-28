@@ -16,10 +16,13 @@ function selectionSort(arr) {
             //check to see if min is still the smallest, if not, reset it
             if(arr[minIndex] > arr[j] ) {
                 minIndex = j
+              
+
             }
         }
         //once we've found the min, after iterating through  swap the first index of the unsorted side (outer loop i) with the newfly found minIndex
-        swap(arr,i,minIndex)
+       /*  swap(arr,i,minIndex) */
+     swap(arr,i,index) 
     }
     return arr
 }

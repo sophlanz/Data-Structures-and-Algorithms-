@@ -38,3 +38,10 @@ module.exports = {
     merge,
     mergeSort
 };
+//time complexity, O (n log(n))
+//log n from recursive calls required to completely split the array. 
+//while loop in the merge function n.
+
+//space complexity O(n)
+//the recursive calls to continually divide the array until the base case is reached
+//leads to linear space, the amount of sub arrays created depends on the length of the array. 

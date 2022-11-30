@@ -22,3 +22,5 @@ function countingSort(arr, max) {
 module.exports = {
     countingSort
 };
+//time complexity O(n+k) depends on n iterating over array, and size of k
+//space complexity O(k) depends on size of counter array

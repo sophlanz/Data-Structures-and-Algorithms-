@@ -13,6 +13,8 @@ function binarySearch(array, target) {
         return true;
     }
 }
+//time complexity O(logn) due to splitting the array recursively
+//space complexity O(n) due to hald arrays created from slicing the array into parts
 
 function binarySearchIndex(array, target, lo=0, hi= array.length-1) {
     if(lo===hi) {

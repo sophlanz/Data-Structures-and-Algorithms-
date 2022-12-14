@@ -14,9 +14,7 @@ let sum=0,
             sum -= nums[start];
             start++
         }
-        if(minLen===1) {
-            break;
-        }
+     
     }
     return minLen === Infinity ? 0 : minLen;
 };

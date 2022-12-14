@@ -12,7 +12,7 @@ let start =0,
         let rChar = s[end];
         map[rChar] = map[rChar] +1 || 1;
         maxRepeatingChar = Math.max(maxRepeatingChar,map[rChar]);
-        while((end-start+1 - maxRepeatingChar)>k) {
+        if((end-start+1 - maxRepeatingChar)>k) {
             //shrink the window 
             let lChar = s[start];
             map[lChar]--

@@ -12,7 +12,7 @@ var characterReplacement = function(s, k) {
         let rChar = s[end];
         freqMap[rChar] = freqMap[rChar]+1 || 1;
         maxRepeatingLetter = Math.max(maxRepeatingLetter,freqMap[rChar]);
-        if((end-start+1 - maxRepeatingLetter) >k) {
+        while((end-start+1 - maxRepeatingLetter) >k) {
             //shrink the window
             let lChar= s[start];
             freqMap[lChar]--

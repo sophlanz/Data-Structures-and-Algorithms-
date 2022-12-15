@@ -8,21 +8,21 @@ let start=0,
     map={},
     match=0;
     for(let i=0;i<s1.length;i++) {
-        map[s1[i]]= map[s1[i]]+1 || 1;
-    }
+        map[s1[i]] = map[s1[i]]+1 || 1
+    };
     for(let end=0;end<s2.length;end++) {
-        let rChar=s2[end];
+        let rChar = s2[end];
         if(rChar in map) {
             map[rChar]--
             if(map[rChar]===0) {
                 match++
             }
         }
-        if(Object.keys(map).length===match) {
+        if(match===Object.keys(map).length) {
             return true
         }
         if(end>=s1.length-1) {
-            let lChar=s2[start];
+            let lChar = s2[start];
             if(lChar in map) {
                 if(map[lChar]===0) {
                     match--
@@ -33,5 +33,4 @@ let start=0,
         }
     }
     return false
-    
 };

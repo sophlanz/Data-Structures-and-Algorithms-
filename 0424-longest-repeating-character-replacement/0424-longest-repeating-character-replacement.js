@@ -4,21 +4,21 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-let start =0,
-    maxLen=0,
+let start=0,
     map={},
-    maxRepeatingChar=0;
+    maxLen=0,
+    mostFreqChar=0;
     for(let end=0;end<s.length;end++) {
-        let rChar = s[end];
-        map[rChar] = map[rChar] +1 || 1;
-        maxRepeatingChar = Math.max(maxRepeatingChar,map[rChar]);
-        if((end-start+1 - maxRepeatingChar)>k) {
-            //shrink the window 
+        let rChar=s[end];
+        map[rChar] = map[rChar]+1 || 1;
+        mostFreqChar=Math.max(mostFreqChar,map[rChar]);
+        if((end-start+1-mostFreqChar)>k) {
+            //shrink window 
             let lChar = s[start];
-            map[lChar]--
+            map[lChar]--;
             start++
         }
         maxLen=Math.max(maxLen,end-start+1);
     }
-    return maxLen
+return maxLen
 };

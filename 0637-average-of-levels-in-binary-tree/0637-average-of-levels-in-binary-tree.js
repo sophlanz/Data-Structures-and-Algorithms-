@@ -11,25 +11,26 @@
  * @return {number[]}
  */
 var averageOfLevels = function(root) {
-let res = [];
-    if(root === null){
-        return res;
+let res =[];
+    if(root === null) {
+        return res
     }
     let queue = [root];
+    
     while(queue.length >0) {
         const levelSize = queue.length;
-        let levelSum = 0;
+        let sum=0;
         for(let i=0;i<levelSize;i++) {
-            let curr = queue.shift();
-            levelSum += curr.val;
-            if(curr.left !== null) {
-                queue.push(curr.left);
+            const currNode = queue.shift();
+            sum += currNode.val;
+            if(currNode.left !== null) {
+                queue.push(currNode.left);
             }
-            if(curr.right !== null) {
-                queue.push(curr.right);
+            if(currNode.right!==null) {
+                queue.push(currNode.right)
             }
         }
-        res.push(levelSum / levelSize)
+        res.push(sum/levelSize)
     }
-    return res
+    return res;
 };

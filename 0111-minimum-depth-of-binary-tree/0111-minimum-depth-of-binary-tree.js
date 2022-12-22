@@ -11,24 +11,24 @@
  * @return {number}
  */
 var minDepth = function(root) {
-if (root === null) {
-    return 0;
-}
-    let queue = [root]
-    let minDepth = 0;
-    while(queue.length >0) {
-        const levelSize = queue.length;
+    if(root ===null) {
+        return 0
+    }
+    let queue = [root];
+    let minDepth =0
+    while(queue.length>0) {
+        const levelSize = queue.length
         minDepth++
         for(let i=0;i<levelSize;i++) {
-            let curr = queue.shift()
-            if(curr.left === null && curr.right === null) {
+            const currNode = queue.shift();
+            if(currNode.left === null && currNode.right === null) {
                 return minDepth
             }
-            if(curr.left !== null){
-                queue.push(curr.left)
+            if(currNode.left !== null) {
+                queue.push(currNode.left)
             }
-            if(curr.right !== null) {
-                queue.push(curr.right)
+            if(currNode.right !== null) {
+                queue.push(currNode.right)
             }
         }
     }

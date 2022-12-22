@@ -4,35 +4,34 @@
  * @return {number[]}
  */
 var findAnagrams = function(s, p) {
-let start=0,
-    res=[],
+let start =0,
+    mapPattern={},
     match=0,
-    map={};
-    for(let i=0;i<p.length;i++) {
-        map[p[i]] = map[p[i]]+1 ||1;
-        
-    }
+    res=[];
+for(let i=0;i<p.length;i++){
+    mapPattern[p[i]] = mapPattern[p[i]] +1 || 1;
+}
     for(let end=0;end<s.length;end++) {
         let rChar = s[end];
-        if(rChar in map) {
-            map[rChar]--
-            if(map[rChar]=== 0) {
+        if(rChar in mapPattern) {
+            mapPattern[rChar]--
+            if(mapPattern[rChar]===0) {
                 match++
             }
         }
-        if(match === Object.keys(map).length) {
-            res.push(start)
+        if(Object.keys(mapPattern).length === match) {
+            res.push(start);
         }
-        if(end >= p.length-1) {
+        if(end-start+1 >= p.length) {
             let lChar = s[start];
-            if(lChar in map) {
-                if(map[lChar]=== 0) {
+            if(lChar in mapPattern) {
+                if(mapPattern[lChar]===0) {
                     match--
                 }
-                map[lChar]++
+                mapPattern[lChar]++
             }
             start++
         }
     }
-    return res
+    return res;
 };

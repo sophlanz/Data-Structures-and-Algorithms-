@@ -12,14 +12,14 @@
  */
 var hasCycle = function(head) {
 
-  let p1 = head
-    let p2 = head
+  let slow = head
+    let fast = head
     
-    while (p2 && p2.next && p2.next.next) {
-        p1 = p1.next
-        p2 = p2.next.next
+    while (fast && fast.next && fast.next.next) {
+        slow = slow.next
+        fast = fast.next.next
         
-        if (p1 === p2) {
+        if (slow === fast) {
             return true
         }
     }

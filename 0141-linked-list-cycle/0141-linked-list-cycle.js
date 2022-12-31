@@ -12,8 +12,8 @@
  */
 var hasCycle = function(head) {
 
-  let slow = head
-    let fast = head
+  let slow = head,
+     fast = head;
     
     while (fast && fast.next && fast.next.next) {
         slow = slow.next

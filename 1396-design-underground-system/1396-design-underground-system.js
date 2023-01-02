@@ -1,7 +1,7 @@
 
 var UndergroundSystem = function() {
-      this.customer = new Map();
-        this.avg = new Map();
+   this.customer = new Map();
+    this.avg = new Map();
 };
 
 /** 
@@ -11,7 +11,7 @@ var UndergroundSystem = function() {
  * @return {void}
  */
 UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
-     	this.customer[id] = [stationName, t];
+     	this.customer[id]=[stationName,t];
 };
 
 /** 
@@ -21,18 +21,16 @@ UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
  * @return {void}
  */
 UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
-    	const [startStation, time] = this.customer[id];
-		const key = `${startStation}, ${stationName}`;
-		const duration = t - time; // duration stayed
+    const [startStation,startTime] = this.customer[id];
+    const key = [startStation, stationName];
+    const duration = t-startTime;
+    if(!this.avg[key]) this.avg[key] = [duration,1];
+    else {
+        const[totalTime,count] = this.avg[key];
+        this.avg[key]= [totalTime+duration,count+1];
+    }
 
-    // if route(key) not visited, save average
-    // else add to total time and increment count by 1
-		if (!this.avg[key]) this.avg[key] = [duration, 1];
-		else {
-			const [total, count] = this.avg[key];
-
-			this.avg[key] = [total + duration, count + 1];
-		}
+  
 };
 
 /** 
@@ -41,10 +39,9 @@ UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
  * @return {number}
  */
 UndergroundSystem.prototype.getAverageTime = function(startStation, endStation) {
-    const key = `${startStation}, ${endStation}`;
-		const [total, count] = this.avg[key];
-
-		return total / count;
+    const key = [startStation, endStation];
+    const [totalTime,count]=this.avg[key]
+    return totalTime /count;
 };
 
 /** 

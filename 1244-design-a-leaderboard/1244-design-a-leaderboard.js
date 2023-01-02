@@ -20,7 +20,7 @@ Leaderboard.prototype.top = function(K) {
     const scores = Object.values(this.map).sort((a,b)=> b-a);
     let sum =0;
     let idx = 0;
-    while(K--) {
+    while(idx<K){
         sum += scores[idx];
         idx++
     }

@@ -22,8 +22,11 @@ RandomizedSet.prototype.insert = function(val) {
 RandomizedSet.prototype.remove = function(val) {
     if(!this.map.has(val)) return false
     const idx = this.map.get(val);
-    this.swap(idx,this.array.length-1);
-    this.array.pop();
+    if(idx !== this.array.length-1) {
+        this.swap(idx,this.array.length-1);
+   
+    }
+     this.array.pop();
     this.map.delete(val);
     this.map.set(this.array[idx], idx);
     return true

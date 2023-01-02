@@ -19,13 +19,14 @@ Leaderboard.prototype.addScore = function(playerId, score) {
  */
 Leaderboard.prototype.top = function(K) {
     	const scores = Object.values(this.map).sort((a, b) => b - a);
-		let sum = 0;
-
-		for (let i = 0; i < K; i++) {
-			sum += scores[i];
-		}
-
-		return sum;
+		  let sum = 0;
+    let idx = 0;
+    
+    while (K--) {
+        sum += scores[idx++];
+    }
+    
+    return sum;
 };
 
 /** 

@@ -1,7 +1,7 @@
 
 var RandomizedSet = function() {
-    this.map = new Map();
-    this.array = [];
+     this.map = new Map();
+     this.array = [];
 };
 
 /** 
@@ -9,12 +9,10 @@ var RandomizedSet = function() {
  * @return {boolean}
  */
 RandomizedSet.prototype.insert = function(val) {
-    if(this.map.has(val)) return false;
-    else {
-        this.map.set(val,this.array.length)
-        this.array.push(val);
-        return true
-    }
+   if(this.map.has(val)) return false
+    this.map.set(val, this.array.length);
+    this.array.push(val);
+    return true;
 };
 
 /** 
@@ -23,25 +21,23 @@ RandomizedSet.prototype.insert = function(val) {
  */
 RandomizedSet.prototype.remove = function(val) {
     if(!this.map.has(val)) return false
-    else {
-        const index = this.map.get(val);
-        this.swap(index,this.array.length-1);
-        this.array.pop();
-        this.map.set(this.array[index], index);
-        this.map.delete(val)
-        return true
-    }
+    const idx = this.map.get(val);
+    this.swap(idx,this.array.length-1);
+    this.array.pop();
+    this.map.delete(val);
+    this.map.set(this.array[idx], idx);
+    return true
 };
-RandomizedSet.prototype.swap = function(a,b) {
-    const temp = this.array[a];
+RandomizedSet.prototype.swap = function (a,b) {
+    const tmp = this.array[a];
     this.array[a] = this.array[b];
-    this.array[b] = temp;
+    this.array[b] = tmp;
 }
 /**
  * @return {number}
  */
 RandomizedSet.prototype.getRandom = function() {
-    return this.array[Math.floor(Math.random()* this.array.length)]
+    return this.array[Math.floor(Math.random() * this.array.length)]
 };
 
 /** 

@@ -25,14 +25,14 @@ MinStack.prototype.pop = function() {
  * @return {number}
  */
 MinStack.prototype.top = function() {
-   return this.stack[this.stack.length-1].value;
+    return this.stack[this.stack.length-1].value
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-   return this.stack[this.stack.length-1].min;
+    return this.stack[this.stack.length-1].min
 };
 
 /** 

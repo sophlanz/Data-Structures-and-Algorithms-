@@ -1,6 +1,20 @@
-
+var Queue = function () {
+    this.items = [];
+}
+Queue.prototype.enqueue = function(val) {
+    this.items.push(val);
+}
+Queue.prototype.dequeue = function() {
+   return this.items.pop();
+}
+Queue.prototype.size = function() {
+    return this.items.length
+}
+Queue.prototype.isEmpty = function() {
+    return this.items.length === 0;
+}
 var MyStack = function() {
-    this.queue = [];
+     this.queue = new Queue();
 };
 
 /** 
@@ -8,28 +22,28 @@ var MyStack = function() {
  * @return {void}
  */
 MyStack.prototype.push = function(x) {
-    return this.queue.push(x);
+    this.queue.enqueue(x)
 };
 
 /**
  * @return {number}
  */
 MyStack.prototype.pop = function() {
-   return this.queue.pop()
+   return this.queue.dequeue()
 };
 
 /**
  * @return {number}
  */
 MyStack.prototype.top = function() {
-    return this.queue[this.queue.length-1];
+    return this.queue.items[this.queue.size()-1];
 };
 
 /**
  * @return {boolean}
  */
 MyStack.prototype.empty = function() {
-    return this.queue.length === 0
+    return this.queue.isEmpty()
 };
 
 /** 

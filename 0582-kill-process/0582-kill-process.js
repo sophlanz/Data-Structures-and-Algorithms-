@@ -7,16 +7,15 @@
 var killProcess = function(pid, ppid, kill) {
     let parentMap = {};
     for(let i=0;i<pid.length;i++) {
-        const parent = ppid[i];
         const child = pid[i];
+        const parent = ppid[i];
         parentMap[parent] = parentMap[parent] || [];
         parentMap[parent].push(child);
-    };
+    }
     
     let result = [];
-    DFStoKill(kill);
-    
-    function DFStoKill(killNode) {
+   
+    const DFStoKill = (killNode)  => {
         result.push(killNode);
         if(parentMap[killNode]) {
             for(const child of parentMap[killNode]) {
@@ -24,5 +23,6 @@ var killProcess = function(pid, ppid, kill) {
             }
         }
     }
-    return result;
+     DFStoKill(kill)
+    return result
 };

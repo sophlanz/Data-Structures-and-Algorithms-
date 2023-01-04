@@ -1,7 +1,7 @@
 class Node {
     constructor(val,next,prev) {
         this.val = val;
-        this.next = next;
+        this.next=next;
         this.prev=prev;
     }
 }
@@ -9,7 +9,7 @@ class Node {
  * @param {string} homepage
  */
 var BrowserHistory = function(homepage) {
-    let node = new Node(homepage,null,null)
+    let node = new Node(homepage,null,null);
     this.curr = node;
 };
 
@@ -18,11 +18,10 @@ var BrowserHistory = function(homepage) {
  * @return {void}
  */
 BrowserHistory.prototype.visit = function(url) {
-    let node = new Node(url, null,null);
+    let node = new Node (url,null,null);
     this.curr.next = node;
     node.prev = this.curr;
     this.curr = node;
-    
 };
 
 /** 
@@ -32,7 +31,7 @@ BrowserHistory.prototype.visit = function(url) {
 BrowserHistory.prototype.back = function(steps) {
     while(steps && this.curr.prev) {
         steps--
-        this.curr = this.curr.prev
+        this.curr = this.curr.prev;
     }
     return this.curr.val;
 };

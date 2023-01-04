@@ -10,6 +10,7 @@ class Node {
  */
 var BrowserHistory = function(homepage) {
     let node = new Node(homepage, null, null)
+    this.head=node
 	this.curr = node
 };
 

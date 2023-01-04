@@ -3,18 +3,16 @@
  * @return {number}
  */
 var minMeetingRooms = function(intervals) {
-const minHeap = new MinPriorityQueue();
-    let minRooms = 0;
+   const minHeap = new MinPriorityQueue();
     intervals.sort((a,b)=> a[0]-b[0]);
-for(let i=0;i<intervals.length;i++) {
-    const interval = intervals[i];
-    if(minHeap.size() >0 && minHeap.front().element <= interval[0]) {
-        minHeap.dequeue().element;
+    let minRooms = 0;
+    for(let i=0;i<intervals.length;i++) {
+        const interval = intervals[i];
+        if(minHeap.size() > 0 && interval[0] >= minHeap.front().element) {
+            minHeap.dequeue().element;
+        }
+        minHeap.enqueue(interval[1]).element
+        minRooms = Math.max(minRooms, minHeap.size());
     }
-    minHeap.enqueue(interval[1]).element
-    minRooms = Math.max(minRooms,minHeap.size())
-}
     return minRooms
-    
 };
-

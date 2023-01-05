@@ -3,10 +3,11 @@
  * @return {number}
  */
 var fib = function(n) {
-    const memo = {};
+ let memo = new Map();
  if(n<=1) {
      return n
  }
-    if(memo[n]) return memo[n];
-    return memo[n] = fib(n-1) + fib(n-2);
+    if(memo.has(n)) return memo.get(n);
+     memo.set(n,fib(n-1) + fib(n-2)) ;
+    return memo.get(n)
 };

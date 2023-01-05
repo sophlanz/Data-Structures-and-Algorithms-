@@ -9,12 +9,12 @@ var unhappyFriends = function(n, preferences, pairs) {
     for(let [i,j] of pairs) {
         preferenceMap[i] = preferences[i].indexOf(j);
         preferenceMap[j] = preferences[j].indexOf(i);
-    };
-    let unhappy =0;
-    for(let person =0;person<n;person++) {
-        for(let option=0;option<preferenceMap[person];option++) {
-            let partner = preferences[person][option];
-            if(preferences[partner].indexOf(person) < preferenceMap[partner]) {
+    }
+    let unhappy=0;
+    for(let person=0;person<n;person++) {
+        for(let rank=0;rank<preferenceMap[person];rank++) {
+            const partner = preferences[person][rank];
+            if(preferences[partner].indexOf(person)<preferenceMap[partner]) {
                 unhappy++
                 break;
             }

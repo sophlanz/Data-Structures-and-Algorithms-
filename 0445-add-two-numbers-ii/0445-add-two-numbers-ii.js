@@ -28,9 +28,9 @@ const s2=[];
         const v2 = s2.length? s2.pop() :0;
         const node = new ListNode((v1+v2+carry)%10);
         carry = Math.floor((v1+v2+carry)/10)
-        if(list) {
+        
             node.next=list;
-        }
+       
         list=node;
     }
     return list

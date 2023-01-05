@@ -5,13 +5,13 @@
  * @return {number}
  */
 var getKth = function(lo, hi, k) {
- const cache = new Map();
-    cache.set(1, 0);
+ const memo = new Map();
+    memo.set(1, 0);
     const getPower = num => {
-        if(cache.has(num)) return cache.get(num);
-        const power =  num % 2 ? getPower(num * 3 + 1)+1  : getPower(num / 2)+1 ;
-        cache.set(num, power);
-        return cache.get(num);
+        if(memo.has(num)) return memo.get(num);
+        const steps =  num % 2 ? getPower(num * 3 + 1)+1  : getPower(num / 2)+1 ;
+        memo.set(num, steps);
+        return memo.get(num);
     }
     const res = [];
     while(lo <= hi) {

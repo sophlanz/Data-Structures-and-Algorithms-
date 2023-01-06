@@ -5,24 +5,22 @@
  * @return {number[]}
  */
 var killProcess = function(pid, ppid, kill) {
-    let parentMap = {};
-    for(let i=0;i<pid.length;i++) {
-        const child = pid[i];
-        const parent = ppid[i];
-        parentMap[parent] = parentMap[parent] || [];
-        parentMap[parent].push(child);
-    }
-    
-    let result = [];
-   
-    const DFStoKill = (killNode)  => {
-        result.push(killNode);
-        if(parentMap[killNode]) {
-            for(const child of parentMap[killNode]) {
+    let parentChildMap = {};
+ for(let i=0; i<pid.length;i++) {
+     const child = pid[i];
+     const parent = ppid[i];
+    if(!parentChildMap[parent]) parentChildMap[parent]=[];
+     parentChildMap[parent].push(child);
+ }
+    let res = [];
+   const DFStoKill = (node) => {
+       res.push(node);
+       if(parentChildMap[node]) {
+           for(let child of parentChildMap[node] ) {
                 DFStoKill(child);
-            }
-        }
-    }
-     DFStoKill(kill)
-    return result
+           }
+       }
+   }
+   DFStoKill(kill);
+    return res;
 };

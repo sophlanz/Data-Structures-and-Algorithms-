@@ -15,14 +15,14 @@ var addTwoNumbers = function(l1, l2) {
     let list = dummy;
     let carry=0;
     while(l1 || l2 || carry) {
-        const v1=l1 ? l1.val : 0;
-        const v2=l2? l2.val : 0;
-        const node = new ListNode((v1+v2+carry)%10);
+        const v1= l1 ? l1.val : null;
+        const v2 = l2 ? l2.val : null;
+        const node = new ListNode((v1 + v2 + carry) %10);
         carry = Math.floor((v1+v2+carry)/10);
         list.next = node;
         list = node;
-        l1= l1? l1.next: null;
-        l2=l2?l2.next:null;
+        l1=l1 ? l1.next : null;
+        l2 = l2? l2.next : null;
     }
     return dummy.next;
 };

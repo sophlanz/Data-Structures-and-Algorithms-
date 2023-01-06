@@ -9,7 +9,7 @@ class Node {
  * @param {string} homepage
  */
 var BrowserHistory = function(homepage) {
-    let node = new Node(homepage,null,null);
+    let node = new ListNode(homepage,null,null);
     this.curr = node;
 };
 
@@ -18,7 +18,7 @@ var BrowserHistory = function(homepage) {
  * @return {void}
  */
 BrowserHistory.prototype.visit = function(url) {
-    let node = new Node (url,null,null);
+    let node = new ListNode(url,null,null)
     this.curr.next = node;
     node.prev = this.curr;
     this.curr = node;
@@ -30,10 +30,10 @@ BrowserHistory.prototype.visit = function(url) {
  */
 BrowserHistory.prototype.back = function(steps) {
     while(steps && this.curr.prev) {
+        this.curr = this.curr.prev
         steps--
-        this.curr = this.curr.prev;
     }
-    return this.curr.val;
+    return this.curr.val
 };
 
 /** 
@@ -42,10 +42,10 @@ BrowserHistory.prototype.back = function(steps) {
  */
 BrowserHistory.prototype.forward = function(steps) {
     while(steps && this.curr.next) {
-        steps--
         this.curr = this.curr.next
+        steps--
     }
-    return this.curr.val
+    return this.curr.val;
 };
 
 /** 

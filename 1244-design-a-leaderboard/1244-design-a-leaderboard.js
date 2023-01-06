@@ -1,6 +1,6 @@
 
 var Leaderboard = function() {
-    this.map={};
+     this.playerMap = {};
 };
 
 /** 
@@ -9,7 +9,7 @@ var Leaderboard = function() {
  * @return {void}
  */
 Leaderboard.prototype.addScore = function(playerId, score) {
-    this.map[playerId] = this.map[playerId] + score || score;
+    this.playerMap[playerId] = this.playerMap[playerId] + score || score;
 };
 
 /** 
@@ -17,11 +17,11 @@ Leaderboard.prototype.addScore = function(playerId, score) {
  * @return {number}
  */
 Leaderboard.prototype.top = function(K) {
-    const scores = Object.values(this.map).sort((a,b)=> b-a);
+    const scores = Object.values(this.playerMap).sort((a,b)=> b-a);
     let sum=0;
-    let idx=0
+    let idx=0;
     while(K--) {
-        sum+= scores[idx];
+        sum += scores[idx];
         idx++
     }
     return sum
@@ -32,7 +32,7 @@ Leaderboard.prototype.top = function(K) {
  * @return {void}
  */
 Leaderboard.prototype.reset = function(playerId) {
-    delete this.map[playerId]
+    delete this.playerMap[playerId]
 };
 
 /** 

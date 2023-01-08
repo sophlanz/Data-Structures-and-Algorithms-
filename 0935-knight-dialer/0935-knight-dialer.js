@@ -27,7 +27,7 @@ var knightDialer = function(n) {
     }
     let ans=0;
     for(const count of dp) {
-        ans = (ans+count) % MOD
+        ans= (ans+count) % MOD
     }
     return ans;
 };

@@ -7,7 +7,7 @@
  */
 var merge = function(nums1, m, nums2, n) {
    for(let i=nums1.length-1,a=m-1,b=n-1;b>=0;i--) {
-       if(nums1[a] > nums2[b] && a>=0) {
+       if(nums1[a] > nums2[b] ) {
            nums1[i] = nums1[a];
            a--
        }else {

@@ -3,8 +3,14 @@
  * @return {SparseVector}
  */
 var SparseVector = function(nums) {
-      this.nums = nums;
+         this.nums = []
+        for (let i = 0; i < nums.length; i++) {
+            if(nums[i] !== 0) {
+                this.nums.push([i, nums[i]])
+            }
+        }
     console.log(this.nums)
+ 
 };
 
 // Return the dotProduct of two sparse vectors
@@ -13,13 +19,24 @@ var SparseVector = function(nums) {
  * @return {number}
  */
 SparseVector.prototype.dotProduct = function(vec) {
-    console.log(vec)
-     let product = 0
-    for(i = 0; i < vec.nums.length; i++){
-        if(vec.nums[i] == 0 || this.nums[i] == 0) continue
-        product += vec.nums[i] * this.nums[i]
-    }
-    return product
+      let res = 0, 
+            left = 0, 
+            right = 0
+        while (left < this.nums.length && right < vec.nums.length) {
+            if (this.nums[left][0] === vec.nums[right][0]) {
+                res += this.nums[left][1] * vec.nums[right][1]
+                left++
+                right++
+            } else if (this.nums[left][0] < vec.nums[right][0]) {
+                left++
+            } else {
+                right++
+            }
+            console.log(res)
+        }
+        return res
+        
+    
 };
 
 // Your SparseVector object will be instantiated and called as such:

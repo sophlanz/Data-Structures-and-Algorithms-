@@ -21,17 +21,16 @@ let dp = new Array(10).fill(1);
         let newDp = new Array(10).fill(0);
         for(let digit=0;digit<=9;digit++) {
             for(const nextKey of nextKeys[digit]) {
-                newDp[digit] = (newDp[digit] +  dp[nextKey]) % MOD
+                newDp[digit] = (newDp[digit] + dp[nextKey]) % MOD;
             }
         }
-        dp=newDp
+        dp = newDp
     }
- 
-    let result=0;
+    let res=0;
     for(const count of dp) {
-        result = (result+count) % MOD
+        res = (res+count)% MOD
     }
-    return result
+    return res
 }; 
 
   

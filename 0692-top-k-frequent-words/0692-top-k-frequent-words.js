@@ -5,18 +5,12 @@
  */
 var topKFrequent = function(words, k) {
   let map = {};
+    words.sort()
     for(const string of words) {
         map[string] = map[string] +1 || 1;
     }
-   let values = Object.keys(map)
-        .sort((a, b) => {
-            let n = map[b] - map[a];
-            if (n !== 0) {
-                return n;
-            }
-
-            return a > b ? 1 : -1;
-        });
+   let values = Object.keys(map).sort((a, b) => map[b]-map[a] )
+    console.log(values)
 
     return values.slice(0,k);
 };

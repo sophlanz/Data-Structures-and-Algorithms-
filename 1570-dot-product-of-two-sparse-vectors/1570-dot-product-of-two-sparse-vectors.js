@@ -4,6 +4,7 @@
  */
 var SparseVector = function(nums) {
       this.nums = nums;
+    console.log(this.nums)
 };
 
 // Return the dotProduct of two sparse vectors
@@ -12,6 +13,7 @@ var SparseVector = function(nums) {
  * @return {number}
  */
 SparseVector.prototype.dotProduct = function(vec) {
+    console.log(vec)
      let product = 0
     for(i = 0; i < vec.nums.length; i++){
         if(vec.nums[i] == 0 || this.nums[i] == 0) continue

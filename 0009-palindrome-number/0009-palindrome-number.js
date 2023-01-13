@@ -3,21 +3,11 @@
  * @return {boolean}
  */
 var isPalindrome = function(x) {
- x=x.toString();
-    let l =0;
-    let r = x.length-1
-    console.log(r)
-    if(x<0) {
-        return false
-    }
-    while(l<=r) {
-        console.log(x[l])
-        if(x[l]=== x[r]) {
-            l++
-            r--
-        } else {
+ let arr = String(x).split('');
+    while(arr.length >1) {
+        if(arr.pop() !== arr.shift()) {
             return false
         }
     }
-    return true
+    return true;
     };

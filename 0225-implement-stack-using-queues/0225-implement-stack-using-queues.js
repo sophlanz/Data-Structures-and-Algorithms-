@@ -1,27 +1,26 @@
 var Queue = function() {
-    this.items = [];
+    this.items=[];
 }
-
-Queue.prototype.enqueue = function(val) {
-    return this.items.push(val);
+Queue.prototype.enqueue = function(x) {
+    this.items.push(x);
 }
-Queue.prototype.dequeue = function() {
-    return this.items.pop();
-}
-Queue.prototype.isEmpty = function() {
-    return this.items.length === 0;
+Queue.prototype.dequeue = function () {
+   return this.items.pop();
 }
 Queue.prototype.getSize = function() {
     return this.items.length;
 }
+Queue.prototype.isEmpty = function() {
+    return this.items.length === 0;
+}
+var MyStack = function() {
+    this.stack = new Queue();
+};
+
 /** 
  * @param {number} x
  * @return {void}
  */
-var MyStack = function() {
- 
-    this.stack = new Queue();
-};
 MyStack.prototype.push = function(x) {
     this.stack.enqueue(x);
 };
@@ -37,7 +36,7 @@ MyStack.prototype.pop = function() {
  * @return {number}
  */
 MyStack.prototype.top = function() {
-    return this.stack.items[this.stack.getSize()-1];
+    return this.stack.items[this.stack.getSize()-1]
 };
 
 /**

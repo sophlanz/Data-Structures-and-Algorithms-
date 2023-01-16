@@ -5,7 +5,7 @@
  * @return {number}
  */
 var getKth = function(lo, hi, k) {
-    let result = [];
+let result = [];
     let memo = new Map();
     memo.set(1,0);
     const getPower = (num) => {

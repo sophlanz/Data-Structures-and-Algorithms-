@@ -9,7 +9,7 @@ var Leaderboard = function() {
  * @return {void}
  */
 Leaderboard.prototype.addScore = function(playerId, score) {
-    this.leaderBoard[playerId] = this.leaderBoard[playerId]+score || score;
+    this.leaderBoard[playerId] = this.leaderBoard[playerId] + score || score;
 };
 
 /** 
@@ -17,15 +17,14 @@ Leaderboard.prototype.addScore = function(playerId, score) {
  * @return {number}
  */
 Leaderboard.prototype.top = function(K) {
-   const scores= Object.values(this.leaderBoard).sort((a,b)=> b-a);
-    let result = 0;
-    let idx=0
+    const scores = Object.values(this.leaderBoard).sort((a,b)=> b-a);
+    let idx=0;
+    let result=0;
     while(K--) {
         result += scores[idx];
         idx++
     }
     return result;
-    
 };
 
 /** 

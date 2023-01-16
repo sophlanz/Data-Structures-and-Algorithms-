@@ -1,6 +1,6 @@
 
 var Leaderboard = function() {
-     this.playerMap = {};
+    this.leaderBoard = {};
 };
 
 /** 
@@ -9,7 +9,7 @@ var Leaderboard = function() {
  * @return {void}
  */
 Leaderboard.prototype.addScore = function(playerId, score) {
-    this.playerMap[playerId] = this.playerMap[playerId] + score || score;
+    this.leaderBoard[playerId] = this.leaderBoard[playerId]+score || score;
 };
 
 /** 
@@ -17,14 +17,15 @@ Leaderboard.prototype.addScore = function(playerId, score) {
  * @return {number}
  */
 Leaderboard.prototype.top = function(K) {
-    const scores = Object.values(this.playerMap).sort((a,b)=> b-a);
-    let sum=0;
-    let idx=0;
+   const scores= Object.values(this.leaderBoard).sort((a,b)=> b-a);
+    let result = 0;
+    let idx=0
     while(K--) {
-        sum += scores[idx];
+        result += scores[idx];
         idx++
     }
-    return sum
+    return result;
+    
 };
 
 /** 
@@ -32,7 +33,7 @@ Leaderboard.prototype.top = function(K) {
  * @return {void}
  */
 Leaderboard.prototype.reset = function(playerId) {
-    delete this.playerMap[playerId]
+    delete this.leaderBoard[playerId]
 };
 
 /** 

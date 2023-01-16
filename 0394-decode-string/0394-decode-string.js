@@ -3,24 +3,24 @@
  * @return {string}
  */
 var decodeString = function(s) {
-    let stack=[],
-        num=0,
-        str='';
+    let stack=[];
+    let str = '';
+    let num=0;
     for(let i=0;i<s.length;i++) {
-        if(s[i] === '[') {
-            stack.push(str);
+        if(s[i] === "[") {
             stack.push(num);
-            str='';
-            num=0
-        }else if (s[i]===']') {
-            let currNum = stack.pop();
+            stack.push(str);
+            str = '';
+            num=0;
+        }else if (s[i] === "]") {
             let prevStr = stack.pop();
-            str = prevStr + str.repeat(currNum);
+            let currNum = stack.pop();
+            str = prevStr + str.repeat(currNum)
         }else if (!isNaN(s[i])) {
             num = num*10 + Number(s[i]);
         }else {
-            str+= s[i];
+            str += s[i];
         }
     }
-    return str;
+    return str
 };

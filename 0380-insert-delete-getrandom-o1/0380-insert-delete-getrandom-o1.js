@@ -1,7 +1,7 @@
 
 var RandomizedSet = function() {
     this.set = [];
-    this.idxMap=new Map();
+    this.map = new Map();
 };
 
 /** 
@@ -9,10 +9,10 @@ var RandomizedSet = function() {
  * @return {boolean}
  */
 RandomizedSet.prototype.insert = function(val) {
-    if(this.idxMap.has(val)) return false
-    this.idxMap.set(val,this.set.length);
+    if(this.map.has(val))return false
+    this.map.set(val,this.set.length);
     this.set.push(val);
-    return true;
+    return true
 };
 
 /** 
@@ -20,12 +20,12 @@ RandomizedSet.prototype.insert = function(val) {
  * @return {boolean}
  */
 RandomizedSet.prototype.remove = function(val) {
-    if(!this.idxMap.has(val)) return false
-    const idx = this.idxMap.get(val);
+    if(!this.map.has(val)) return false
+    const idx = this.map.get(val);
     [this.set[idx], this.set[this.set.length-1]] = [this.set[this.set.length-1], this.set[idx]];
     this.set.pop();
-    this.idxMap.delete(val);
-    this.idxMap.set(this.set[idx], idx)
+    this.map.set(this.set[idx], idx);
+    this.map.delete(val);
     return true;
 };
 

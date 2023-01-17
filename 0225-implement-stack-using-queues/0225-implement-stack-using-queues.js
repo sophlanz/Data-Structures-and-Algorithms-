@@ -5,7 +5,7 @@ Queue.prototype.enqueue = function(x) {
     this.items.push(x)
 }
 Queue.prototype.dequeue = function() {
-   return this.items.pop();
+   return this.items.shift();
 }
 Queue.prototype.size = function() {
     return this.items.length;
@@ -29,6 +29,9 @@ MyStack.prototype.push = function(x) {
  * @return {number}
  */
 MyStack.prototype.pop = function() {
+    for(let i=0;i<this.stack.size()-1;i++) {
+        this.stack.enqueue(this.stack.dequeue())
+    }
     return this.stack.dequeue();
 };
 

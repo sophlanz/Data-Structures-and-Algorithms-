@@ -4,14 +4,14 @@
  * @return {number}
  */
 var calculateTax = function(brackets, income) {
- let paid = 0;
-    let prevUpperBound = 0;
+    let paid = 0;
+    let prevUpperBound=0;
     for(let [upperBound,percent] of brackets) {
-        let current = Math.min(income, upperBound-prevUpperBound);
-        paid += (current) * (percent/100);
-        income -= current;
-        prevUpperBound=upperBound;
-        if (income === 0) return paid
+        let currentDue = Math.min(income,upperBound-prevUpperBound);
+        paid += (currentDue) * (percent/100);
+        income -= currentDue;
+        prevUpperBound = upperBound;
+        
     }
-
+    return paid;
 };

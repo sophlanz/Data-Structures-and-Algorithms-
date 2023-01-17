@@ -22,3 +22,6 @@ var verticalOrder = function(root) {
     }
    return Object.keys(map).sort((a,b)=> a-b).map((a)=> map[a]);
 };
+//BFS queue
+//Time Complexity O(N)
+//space complexity O(N)

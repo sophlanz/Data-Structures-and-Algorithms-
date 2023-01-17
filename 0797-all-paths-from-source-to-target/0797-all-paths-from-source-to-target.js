@@ -3,7 +3,7 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-    let paths = [];
+let paths = [];
     const DFS = (index,path) => {
         if(path[path.length-1] === graph.length-1) {
             paths.push(path);

@@ -5,14 +5,13 @@
  * @return {number[]}
  */
 var killProcess = function(pid, ppid, kill) {
-    let parentChildMap = {};
+   let parentChildMap = {};
     for(let i=0;i<pid.length;i++) {
         const parent = ppid[i];
-        const child = pid[i];
-        if(!parentChildMap[parent]) {
-            parentChildMap[parent] = [child];
-        }else {
-            parentChildMap[parent].push(child);
+        const child = pid[i]
+        if(!parentChildMap[parent]) parentChildMap[parent] = [child]
+        else {
+            parentChildMap[parent].push(child)
         }
     }
     let result = [];
@@ -26,4 +25,5 @@ var killProcess = function(pid, ppid, kill) {
     }
     DFStoKill(kill);
     return result;
+    
 };

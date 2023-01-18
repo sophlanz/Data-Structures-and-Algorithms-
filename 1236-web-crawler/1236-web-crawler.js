@@ -22,13 +22,14 @@ var crawl = function(startUrl, htmlParser) {
     let queue = [startUrl];
     let seen = new Set([startUrl]);
     while(queue.length) {
-        const currUrl = queue.shift();
-        for(const url of htmlParser.getUrls(currUrl)) {
-            if(!seen.has(url) && url.includes(hostName)) {
+        let currUrl = queue.shift();
+        for(let url of htmlParser.getUrls(currUrl)) {
+            if(!seen.has(url) & url.includes(hostName)) {
                 seen.add(url);
-                queue.push(url);
+                queue.push(url)
             }
         }
     }
-    return [...seen.values()];
+    return [...seen.values()]
+    
 };

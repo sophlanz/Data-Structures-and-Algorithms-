@@ -10,10 +10,11 @@ var maxDepth = function(s) {
        const char = s[i];
        if(char === '(') {
            count++
+        maxDepth = Math.max(maxDepth,count);
        }else if (char === ")") {
            count--;
        }
-       maxDepth = Math.max(maxDepth,count);
+    
    }
     return maxDepth;
 };

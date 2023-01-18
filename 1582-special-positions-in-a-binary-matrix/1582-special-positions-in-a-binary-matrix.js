@@ -7,30 +7,24 @@ var numSpecial = function(mat) {
     let cols=mat[0].length;
     let count=0
     const checkCol = (row,col) => {
-        const tmp = mat[row][col]
-        mat[row][col] = 0;
+        let countOnes = 0;
         for(let i=0;i<rows;i++) {
             console.log(mat[i][col])
             if(mat[i][col]===1) {
-                mat[row][col] = tmp;
-                return false
+                countOnes++
             }
         }
-        mat[row][col] = tmp;
-        return true;
+      return countOnes === 1
     };
        const checkRow = (row,col) => {
-        const tmp = mat[row][col]
-        mat[row][col] = 0;
+        let countOnes = 0;
         for(let i=0;i<cols;i++) {
             console.log(mat[row][i])
             if(mat[row][i]===1) {
-                mat[row][col] = tmp;
-                return false
+                countOnes++
             }
         }
-        mat[row][col] = tmp;
-        return true;
+       return countOnes === 1.
     };
    
     for(let i=0;i<rows;i++) {

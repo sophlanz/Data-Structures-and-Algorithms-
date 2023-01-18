@@ -8,23 +8,24 @@ var exist = function(board, word) {
     const cols = board[0].length;
     const DFS = (i,j,idx) => {
         if(word.length === idx) return true;
-        if(i<0 || j<0 || i>=rows || j>= cols || board[i][j] !== word[idx] ) return false
-        board[i][j] =0;
+        if(i<0 || j<0 || i>= rows || j>= cols || board[i][j] !== word[idx]) return false;
+        board[i][j] = 0;
         if(DFS(i+1,j,idx+1)||
-           DFS(i-1,j,idx+1) ||
+          DFS(i-1,j,idx+1) ||
            DFS(i,j+1,idx+1) ||
-           DFS(i,j-1,idx+1)
-          ){return true}
-        else {
-            board[i][j] = word[idx]
-        }
-    }
+           DFS(i,j-1,idx+1))  return true;
+           else {
+           board[i][j] = word[idx];
+           }
+           
+    };
+
     for(let i=0;i<rows;i++) {
-        for( let j=0;j<cols;j++) {
+        for(let j=0;j<cols;j++) {
             if(board[i][j] === word[0] && DFS(i,j,0)) {
-                return true;
+                return true
             }
         }
     }
-    return false
+return false;
 };

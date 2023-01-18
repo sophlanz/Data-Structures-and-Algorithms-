@@ -11,17 +11,17 @@
  * @return {number[][]}
  */
 var verticalOrder = function(root) {
-    if(!root) return [];
-   let queue = [[root,0]];
+ if(!root) return [];
+    let queue = [[root,0]];
     let map = {};
     while(queue.length) {
-        const[node,idx] = queue.shift();
-        map[idx] ? map[idx].push(node.val) : map[idx] = [node.val];
-        node.left ? queue.push([node.left, idx-1]) : null;
-        node.right ? queue.push([node.right, idx+1]) : null;
+        const [node,idx] = queue.shift();
+        if(!map[idx]) map[idx] = [node.val];
+        else{
+            map[idx].push(node.val);
+        }
+        node.left ? queue.push([node.left,idx-1]) : null;
+        node.right ? queue.push([node.right,idx+1]) : null
     }
-   return Object.keys(map).sort((a,b)=> a-b).map((a)=> map[a]);
+return Object.keys(map).sort((a,b)=> a-b).map((a)=> map[a]);
 };
-//BFS queue
-//Time Complexity O(N)
-//space complexity O(N)

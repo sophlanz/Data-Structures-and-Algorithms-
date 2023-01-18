@@ -11,9 +11,7 @@ for(let i=1;i<=n;i++) {
     while(queue.length !==1) {
         let x=k
         while(x >1){
-           let temp = queue[0];
-            queue.shift();
-            queue.push(temp)
+           queue.push(queue.shift())
             x--
         }
         queue.shift();

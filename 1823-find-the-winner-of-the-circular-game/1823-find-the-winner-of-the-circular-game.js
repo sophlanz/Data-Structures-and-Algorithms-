@@ -5,8 +5,9 @@
  */
 var findTheWinner = function(n, k) {
     let queue=[];
-for(let i=1;i<=n;i++) {
-    queue.push(i)
+while(n >0) {
+    queue.unshift(n)
+    n--
 }
     while(queue.length !==1) {
         let x=k

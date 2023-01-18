@@ -4,15 +4,16 @@
  * @return {number}
  */
 var findTheWinner = function(n, k) {
-let queue = [];
-    for(let i=1;i<=n;i++) {
-        queue.push(i);
-    }
+    let queue=[];
+for(let i=1;i<=n;i++) {
+    queue.push(i)
+}
     while(queue.length !==1) {
-        let x = k
-        while(x>1) {
-            let temp = queue.shift();
-            queue.push(temp);
+        let x=k
+        while(x >1){
+           let temp = queue[0];
+            queue.shift();
+            queue.push(temp)
             x--
         }
         queue.shift();

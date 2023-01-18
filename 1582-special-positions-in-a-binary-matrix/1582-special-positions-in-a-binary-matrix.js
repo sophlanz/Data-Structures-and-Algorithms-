@@ -10,13 +10,11 @@ var numSpecial = function(mat) {
        const checkRow = (row,col) => {
         let countOnes = 0;
         for(let i=0;i<cols;i++) {
-            console.log(mat[row][i])
             if(mat[row][i]===1) {
                 countOnes++
             }
         }
             for(let i=0;i<rows;i++) {
-            console.log(mat[i][col])
             if(mat[i][col]===1) {
                 countOnes++
             }
@@ -27,11 +25,9 @@ var numSpecial = function(mat) {
     for(let i=0;i<rows;i++) {
         for(let j=0;j<cols;j++) {
          
-            if(mat[i][j] === 1) {
-               
-                if(checkRow(i,j) ) {
-                    count++
-                }
+            if(mat[i][j] === 1 && checkRow(i,j)) {
+               count++
+                
             }
         }
     }

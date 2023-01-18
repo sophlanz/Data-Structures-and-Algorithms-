@@ -4,13 +4,16 @@
  * @return {string[]}
  */
 var topKFrequent = function(words, k) {
-  let map = {};
-    words.sort()
-    for(const string of words) {
-        map[string] = map[string] +1 || 1;
-    }
-   let values = Object.keys(map).sort((a, b) => map[b]-map[a] )
-    console.log(values)
-
-    return values.slice(0,k);
+    words.sort();
+    let freqMap = {};
+    for(let i=0;i<words.length;i++) {
+        if(!freqMap[words[i]]) freqMap[words[i]] = 1;
+        else {
+            freqMap[words[i]]++
+        }
+    };
+    console.log(freqMap)
+    let topWords= Object.keys(freqMap).sort((a,b)=> freqMap[b]-freqMap[a]);
+    console.log(topWords)
+    return topWords.splice(0,k); 
 };

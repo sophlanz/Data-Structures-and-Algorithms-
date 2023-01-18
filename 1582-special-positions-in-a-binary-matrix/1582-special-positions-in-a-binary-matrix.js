@@ -6,16 +6,7 @@ var numSpecial = function(mat) {
   let rows = mat.length;
     let cols=mat[0].length;
     let count=0
-    const checkCol = (row,col) => {
-        let countOnes = 0;
-        for(let i=0;i<rows;i++) {
-            console.log(mat[i][col])
-            if(mat[i][col]===1) {
-                countOnes++
-            }
-        }
-      return countOnes === 1
-    };
+  
        const checkRow = (row,col) => {
         let countOnes = 0;
         for(let i=0;i<cols;i++) {
@@ -24,7 +15,13 @@ var numSpecial = function(mat) {
                 countOnes++
             }
         }
-       return countOnes === 1.
+            for(let i=0;i<rows;i++) {
+            console.log(mat[i][col])
+            if(mat[i][col]===1) {
+                countOnes++
+            }
+        }
+       return countOnes === 2.
     };
    
     for(let i=0;i<rows;i++) {
@@ -32,7 +29,7 @@ var numSpecial = function(mat) {
          
             if(mat[i][j] === 1) {
                
-                if(checkRow(i,j) && checkCol(i,j)) {
+                if(checkRow(i,j) ) {
                     count++
                 }
             }

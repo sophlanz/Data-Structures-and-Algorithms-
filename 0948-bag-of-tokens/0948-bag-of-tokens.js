@@ -4,7 +4,7 @@
  * @return {number}
  */
 var bagOfTokensScore = function(tokens, power) {
- tokens.sort((a, b) => a - b);
+  tokens.sort((a, b) => a - b);
     
     let score = 0, max = 0, left = 0, right = tokens.length - 1;
     

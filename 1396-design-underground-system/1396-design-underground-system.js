@@ -1,7 +1,7 @@
 
 var UndergroundSystem = function() {
+    this.customer = {};
     this.avg={};
-    this.customer={};
 };
 
 /** 
@@ -11,7 +11,7 @@ var UndergroundSystem = function() {
  * @return {void}
  */
 UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
-    this.customer[id] = [stationName,t];
+    this.customer[id] = [stationName,t]
 };
 
 /** 
@@ -22,14 +22,13 @@ UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
  */
 UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
     const [startStation,startTime] = this.customer[id];
-    const duration = t-startTime;
-    const route = [startStation, stationName];
-    if(!this.avg[route]) {
-        this.avg[route] = [duration, 1];
-    }else {
+    const duration = t- startTime;
+    const route = [startStation,stationName];
+    if(!this.avg[route]) this.avg[route] = [duration,1];
+    else {
         const [totalTime, count] = this.avg[route];
-        this.avg[route] = [totalTime+duration,count+1]
-    };
+        this.avg[route] = [totalTime+duration, count+1];
+    }
 };
 
 /** 
@@ -39,8 +38,8 @@ UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
  */
 UndergroundSystem.prototype.getAverageTime = function(startStation, endStation) {
     const route = [startStation,endStation];
-    const [totalTime, count] = this.avg[route];
-    return totalTime/count;
+    const [totalTime,count] = this.avg[route];
+    return totalTime/count
 };
 
 /** 

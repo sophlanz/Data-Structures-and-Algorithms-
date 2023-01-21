@@ -6,7 +6,7 @@
 var wordBreak = function(s, wordDict) {
 let arr = [];
     arr[0] = true;
-    for(let i=0;i<=s.length;i++) {
+    for(let i=0;i<s.length;i++) {
         if(arr[i] === true) {
             for(const word of wordDict) {
                 if(s.slice(i,i+word.length) === word) {

@@ -9,12 +9,12 @@ var numsSameConsecDiff = function(n, k) {
         let newDp = new Set();
         for(let prevVal of dp) {
             let lastDigit = prevVal%10;
-            let plusK = lastDigit+k;
-            let minusK = lastDigit-k;
-            if(plusK<10)newDp.add((prevVal*10)+plusK);
-            if(minusK>=0)newDp.add((prevVal*10)+minusK)
+            let plusK = lastDigit + k;
+            let minusK = lastDigit -k;
+            if(plusK < 10) newDp.add((prevVal*10) + plusK);
+            if(minusK >=0) newDp.add((prevVal*10)+minusK);
         }
-        dp = newDp;
+        dp = newDp
     }
     return [...dp]
 };

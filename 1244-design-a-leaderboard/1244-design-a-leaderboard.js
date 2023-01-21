@@ -19,12 +19,12 @@ Leaderboard.prototype.addScore = function(playerId, score) {
 Leaderboard.prototype.top = function(K) {
     const scores = Object.values(this.leaderBoard).sort((a,b)=> b-a);
     let idx=0;
-    let result=0;
+    let res=0;
     while(K--) {
-        result += scores[idx];
+        res += scores[idx];
         idx++
     }
-    return result;
+    return res;
 };
 
 /** 
@@ -32,7 +32,7 @@ Leaderboard.prototype.top = function(K) {
  * @return {void}
  */
 Leaderboard.prototype.reset = function(playerId) {
-    delete this.leaderBoard[playerId]
+    delete this.leaderBoard[playerId];
 };
 
 /** 

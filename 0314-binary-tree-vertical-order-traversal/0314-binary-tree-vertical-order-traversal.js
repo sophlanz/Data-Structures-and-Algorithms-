@@ -11,17 +11,14 @@
  * @return {number[][]}
  */
 var verticalOrder = function(root) {
- if(!root) return [];
-    let queue = [[root,0]];
-    let map = {};
+    if(!root) return [];
+    let queue = [[0,root]];
+    let idxMap = {}  
     while(queue.length) {
-        const [node,idx] = queue.shift();
-        if(!map[idx]) map[idx] = [node.val];
-        else{
-            map[idx].push(node.val);
-        }
-        node.left ? queue.push([node.left,idx-1]) : null;
-        node.right ? queue.push([node.right,idx+1]) : null
-    }
-return Object.keys(map).sort((a,b)=> a-b).map((a)=> map[a]);
+        const [idx, node] = queue.shift();
+        idxMap[idx] ? idxMap[idx].push(node.val) : idxMap[idx] = [node.val];
+        node.left ? queue.push([idx-1, node.left]) : null;
+        node.right ? queue.push([idx+1, node.right]):null;
+    };
+  return  Object.keys(idxMap).sort((a,b)=> a-b).map((a)=> idxMap[a]);
 };

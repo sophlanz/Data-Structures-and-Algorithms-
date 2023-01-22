@@ -14,8 +14,9 @@ var longestMountain = function(arr) {
       
              while(arr[r]<arr[r+1]) {
                 r++
+                  peak=r
             }
-            peak=r
+           
       
       
              while(arr[r] > arr[r+1]) {

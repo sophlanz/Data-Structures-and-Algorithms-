@@ -3,16 +3,15 @@
  * @return {number[]}
  */
 var arrayRankTransform = function(arr) {
-       let clone = [...arr];
-    let hash = {};
+ let clone = [...arr]
+ let rankMap={};
     let rank = 1;
-    clone.sort((a,b)=>a-b).map((a,b)=>{
-        if (!hash[a]) {
-            hash[a] = rank;
+    clone.sort((a,b)=> a-b).map((a,b)=> {
+        if(!rankMap[a]){
+            rankMap[a] = rank;
             rank++
-        };
-    });
-    console.log(clone)
-    console.log(hash)
-    return arr.map((a)=>hash[a]);
+        } 
+    })
+    return arr.map((a)=> rankMap[a]);
 };
+    

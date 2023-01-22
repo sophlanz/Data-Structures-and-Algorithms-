@@ -4,16 +4,14 @@
  * @return {number}
  */
 var minSteps = function(s, t) {
-    let freqMap={};
-    for(let i=0;i<s.length;i++) {
-        freqMap[s[i]] ? freqMap[s[i]]++ : freqMap[s[i]] = 1;
-        freqMap[t[i]] ? freqMap[t[i]]-- : freqMap[t[i]] = -1;
-    }
+    let map = {};
+    for( let i=0;i<s.length;i++) {
+        map[s[i]] ? map[s[i]]++ : map[s[i]] = 1;
+        map[t[i]] ? map[t[i]]-- : map[t[i]] = -1;
+    };
     let count=0
-    for(const char in freqMap) {
-        if(freqMap[char] > 0) {
-            count += freqMap[char]
-        }
+    for (const char in map) {
+        if(map[char] > 0) count += map[char]
     }
-    return count;
+    return count
 };

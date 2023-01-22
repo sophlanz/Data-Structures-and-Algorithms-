@@ -15,11 +15,9 @@ var invalidTransactions = function(transactions) {
             }
         }
     }
-    let res = [];
-    let idx=0
-    for (const val of invalid) {
-        if (val=== true) res.push(transactions[idx])
-        idx++
-    }
-    return res;
+    return invalid.reduce((acc, val, index) => {
+
+        if(val) acc.push(transactions[index])
+        return acc;
+    }, [])
 };

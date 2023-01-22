@@ -10,7 +10,7 @@ var longestMountain = function(arr) {
     let maxLen = 0;
     let start = 0;
     
-    while (start < n - 1) {
+    while (start < n - 2) {
        let end = start;
         
         // check for ascending

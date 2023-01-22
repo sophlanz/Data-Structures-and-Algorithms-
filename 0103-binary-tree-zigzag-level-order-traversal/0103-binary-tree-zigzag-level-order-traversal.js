@@ -11,30 +11,28 @@
  * @return {number[][]}
  */
 var zigzagLevelOrder = function(root) {
-let res =[];
-    if(root===null ) {
-        return res;
-    }
-    let queue = [root];
+    if(!root) return [];
+let res=[];
     let leftToRight = true;
-    while(queue.length >0) {
+    let queue = [root];
+    while(queue.length) {
         const levelSize = queue.length;
-        let currLevel = [];
+        let levelNodes=[];
         for(let i=0;i<levelSize;i++) {
-            const currNode = queue.shift();
+           let node= queue.shift();
             if(leftToRight) {
-                currLevel.push(currNode.val);
+                levelNodes.push(node.val)
             }else {
-                currLevel.unshift(currNode.val)
+                levelNodes.unshift(node.val);
             }
-            if(currNode.left !== null) {
-                queue.push(currNode.left)
+            if(node.left !== null) {
+                queue.push(node.left)
             }
-            if(currNode.right !== null) {
-                queue.push(currNode.right)
+            if(node.right !== null) {
+                queue.push(node.right)
             }
         }
-        res.push(currLevel)
+        res.push(levelNodes);
         leftToRight = !leftToRight
     }
     return res;

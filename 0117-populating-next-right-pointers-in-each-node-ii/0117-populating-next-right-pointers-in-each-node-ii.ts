@@ -15,7 +15,7 @@
  */
 
 function connect(root: Node | null): Node | null {
-    if(!root || root===null) return null;
+    if(!root ) return null;
     const getNextNode = (node) => {
         while(node.next !=null) {
             node = node.next;

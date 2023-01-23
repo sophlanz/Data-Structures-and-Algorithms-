@@ -15,28 +15,26 @@
  */
 
 function connect(root: Node | null): Node | null {
-    if(!root ) return null;
-    const getNextNode = (node) => {
-        while(node.next !=null) {
+    const findNextNode=(node) => {
+        while(node.next != null) {
             node = node.next;
-            if(node.left != null ) return node.left;
-            if(node.right != null) return node.right;
+            if(node.left != null) return node.left;
+            if(node.right != null) return node.right
         }
-        return null;
+        return null
     }
-  if(root.left != null) {
-      if(root.right != null) {
-          root.left.next = root.right
-      }else {
-          root.left.next = getNextNode(root);
-      }
-  }
-    if(root.right !=null) {
-        if(root.next) {
-            root.right.next = getNextNode(root);
+    if(!root) return null ;
+    if(root.left != null) {
+        if(root.right != null) root.left.next = root.right
+        else{
+            root.left.next = findNextNode(root);
         }
     }
-    connect(root.right);
+    if(root.right != null) {
+        if(root.next != null) root.right.next = findNextNode(root);
+    }
+      connect(root.right);
     connect(root.left);
-    return root
+  
+    return root;
 };

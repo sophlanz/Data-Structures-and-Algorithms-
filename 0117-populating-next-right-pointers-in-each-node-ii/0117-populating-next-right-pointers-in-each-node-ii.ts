@@ -24,7 +24,7 @@ function connect(root: Node | null): Node | null {
         }
         return null
     }
-    if(!root) return null;
+    if(!root) return null ;
     if(root.left != null) {
         if(root.right != null) {
             root.left.next = root.right;

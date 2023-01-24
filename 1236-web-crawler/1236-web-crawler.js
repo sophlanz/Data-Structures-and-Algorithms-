@@ -22,7 +22,7 @@ var crawl = function(startUrl, htmlParser) {
     let seen = new Set([startUrl]);
     const DFS = (currUrl)=> {
         for(const url of htmlParser.getUrls(currUrl)) {
-            if(getHostName(url).includes(hostName) && !seen.has(url)) {
+            if(url.includes(hostName) && !seen.has(url)) {
                  seen.add(url);
             DFS(url);
             }

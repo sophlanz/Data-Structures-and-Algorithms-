@@ -3,21 +3,17 @@
  * @return {string}
  */
 var breakPalindrome = function(palindrome) {
-      let result = palindrome.split("");
-
-  for (let i = 0; i < Math.floor(result.length / 2); i++) {
-    if (result[i] !== "a") {
-      result[i] = "a";
-      return result.join("");
+let res = palindrome.split('');
+    for(let i=0;i<Math.floor(res.length/2);i++) {
+        if(res[i] !=="a") {
+            res[i] = "a";
+            return res.join('');
+        }
     }
-  }
-
-  if (result.length === 1) {
-    return "";
-  } else {
-   
-    result[result.length - 1] = "b";
-
-    return result.join("");
-  }
+    if(res.length ===1) {
+        return ''
+    }else {
+         res[res.length-1] = 'b';
+        return res.join('')
+    }
 };

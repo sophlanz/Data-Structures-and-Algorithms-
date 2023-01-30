@@ -6,8 +6,7 @@ var arrayRankTransform = function(arr) {
 let rankMap = {};
     let clone = [...arr];
     let rank=1
-    clone.sort((a,b)=> a-b);
-    clone.forEach((num)=> {
+    clone.sort((a,b)=> a-b).forEach((num)=> {
         if(!rankMap[num]) {
             rankMap[num]=rank;
             rank++

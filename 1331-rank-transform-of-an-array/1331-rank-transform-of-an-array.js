@@ -3,15 +3,16 @@
  * @return {number[]}
  */
 var arrayRankTransform = function(arr) {
+let rankMap = {};
     let clone = [...arr];
-    let rankMap={};
     let rank=1
-    clone.sort((a,b)=> a-b).map((a)=> {
-        if(!rankMap[a]) {
-            rankMap[a] = rank;
+    clone.sort((a,b)=> a-b);
+    clone.forEach((num)=> {
+        if(!rankMap[num]) {
+            rankMap[num]=rank;
             rank++
         }
-    });
-   return arr.map((a)=> rankMap[a]);
+    })
+    return arr.map((val)=> rankMap[val])
     
 };

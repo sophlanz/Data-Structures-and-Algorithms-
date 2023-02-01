@@ -4,15 +4,15 @@
  * @return {number}
  */
 var canCompleteCircuit = function(gas, cost) {
-   let start = 0, total=0,tank=0;
+ let start=0,tank=0,total=0;
     for(let i=0;i<gas.length;i++) {
-        let consume = gas[i] - cost[i]
-        tank += consume;
+        let consumption = gas[i] - cost[i];
+        tank += consumption;
         if(tank<0) {
-            tank =0;
-            start= i+1
+            start = i+1;
+            tank=0
         }
-        total += consume;
+        total += consumption
     }
-  return  total<0 ?  -1 : start 
+    return total >= 0 ? start: -1;
 };

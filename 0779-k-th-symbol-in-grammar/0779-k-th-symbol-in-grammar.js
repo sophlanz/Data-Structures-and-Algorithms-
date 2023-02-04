@@ -4,13 +4,18 @@
  * @return {number}
  */
 var kthGrammar = function(n, k) {
-
-     if (n === 1) return 0;
-    const parent = kthGrammar(n-1, Math.ceil(k / 2));
-    const isKOdd = k % 2 == 1;
-    if (parent === 1) { // 1, 0
-        return isKOdd ? 1 : 0;
-    } else { // 0 1
-        return isKOdd ? 0 : 1;
+    const flip = (num)=> {
+        return num==0 ? 1 :0
     }
+	// base case
+	if(n==1) {
+		return 0;
+	}
+    
+	if(k%2==1) {
+		return kthGrammar(n-1, (k+1)/2);
+	} else {
+		return flip(kthGrammar(n-1, k/2));
+	}
+    
 };

@@ -4,16 +4,17 @@
  * @return {boolean}
  */
 var wordBreak = function(s, wordDict) {
-let arr = [];
-    arr[0] = true;
+   let valid = new Array(s.length+1).fill(false);
+    valid[0] = true;
     for(let i=0;i<s.length;i++) {
-        if(arr[i] === true) {
+        if(valid[i]===true) {
             for(const word of wordDict) {
-                if(s.slice(i,i+word.length) === word) {
-                    arr[i+word.length] = true;
-                }
+                let length = word.length;
+                let possibleString = s.slice(i,i+length)
+                if(word === possibleString) valid[i+length] = true;
             }
         }
-    } 
-    return arr[s.length] ? true: false;
+    }
+    return valid[s.length]
+    
 };

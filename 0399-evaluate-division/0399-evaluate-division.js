@@ -7,22 +7,22 @@
 var calcEquation = function(equations, values, queries) {
  let neighbors = {}
  const evaluate = (query) => {
-     const [nom, denom] = query;
-     if(!(nom in neighbors) || !(denom in neighbors)) return -1;
+   const [nom,denom] = query;
+     if(!(nom in neighbors)|| !(denom in neighbors)) return -1;
      if(nom === denom ) return 1;
-     let queue = neighbors[nom].slice()
+     let queue = neighbors[nom].slice();
      let visited = new Set();
      while(queue.length) {
          const [char,val] = queue.shift();
-         if(char === denom) return val;
+         if(char == denom) return val;
          visited.add(char);
          const next = neighbors[char];
-         next.forEach(([nextChar,nextVal])=> {
-             if(visited.has(nextChar)) return;
-             queue.push([nextChar,nextVal*val])
-         })
+         next.forEach(([nextChar,nextVal])=>{
+                      if(visited.has(nextChar)) return;
+         queue.push([nextChar,nextVal*val]);
+                      })
      }
-     return -1
+ return -1
      
  }
 for(let i=0;i<equations.length;i++) {
@@ -36,6 +36,7 @@ for(let i=0;i<equations.length;i++) {
     }
     return res;
 };
-    
+
+
 
        

@@ -5,45 +5,37 @@
  * @return {number[]}
  */
 var calcEquation = function(equations, values, queries) {
-        let neighbors = {};
-    
-    equations.forEach(([nom, denom], idx) => {
-        const val = values[idx];
-        neighbors[nom] ? neighbors[nom].push([denom,val]) : neighbors[nom]= [[denom,val]];
-        neighbors[denom] ? neighbors[denom].push([nom, 1 / val]): neighbors[denom]=[[nom,1 / val]];
-      
-    });
-   
-    let result = [];
-    for (let query of queries) {
-        result.push(evaluate(query, neighbors));
+ let neighbors = {}
+ const evaluate = (query) => {
+     const [nom, denom] = query;
+     if(!(nom in neighbors) || !(denom in neighbors)) return -1;
+     if(nom === denom ) return 1;
+     let queue = neighbors[nom].slice()
+     let visited = new Set();
+     while(queue.length) {
+         const [char,val] = queue.shift();
+         if(char === denom) return val;
+         visited.add(char);
+         const next = neighbors[char];
+         next.forEach(([nextChar,nextVal])=> {
+             if(visited.has(nextChar)) return;
+             queue.push([nextChar,nextVal*val])
+         })
+     }
+     return -1
+     
+ }
+for(let i=0;i<equations.length;i++) {
+    const [nom,denom] = equations[i];
+    neighbors[nom] ? neighbors[nom].push([denom,values[i]]) : neighbors[nom]=[[denom,values[i]]];
+    neighbors[denom] ? neighbors[denom].push([nom, 1/values[i]]) : neighbors[denom] = [[nom,1/values[i]]]
+}
+    let res=[]
+    for(const query of queries) {
+        res.push(evaluate(query))
     }
-  
-    
-    return result;
+    return res;
 };
+    
 
-function evaluate(query, neighbors) {
-    const [nom, denom] = query;
-    if (!(nom in neighbors) || !(denom in neighbors)) return -1;
-    if (nom === denom) return 1;
-    
-    let queue = neighbors[nom].slice();
-  console.log(queue)
-    let visited = new Set();
-    
-    while (queue.length) {
-        const [variable, value] = queue.shift();
        
-        if (variable === denom) return value;
-        visited.add(variable);
-        
-        const next = neighbors[variable];
-        next.forEach(([next, nextValue]) => {
-            if (visited.has(next)) return;
-            queue.push([next, nextValue * value]);
-        });
-    }
-    
-    return -1;
-};

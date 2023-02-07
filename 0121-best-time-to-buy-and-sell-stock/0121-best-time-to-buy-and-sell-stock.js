@@ -3,17 +3,18 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let profit=0,
-        l=0,
+    let l=0,
+        maxProfit=0,
         r=1;
     while(r<prices.length) {
-        let sum = prices[r]-prices[l];
-        if(sum >0) {
-            profit = Math.max(profit,sum);
+        let profit = prices[r]-prices[l];
+        if(profit>0){
+            r++
+            maxProfit=Math.max(maxProfit,profit);
         }else {
             l=r
+            r++
         }
-        r++
     }
-    return profit;
+    return maxProfit
 };

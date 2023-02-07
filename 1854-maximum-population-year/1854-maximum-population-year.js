@@ -3,17 +3,15 @@
  * @return {number}
  */
 var maximumPopulation = function(logs) {
-    let arr = new Array(101).fill(0);
-    let year=0;
-    for(const[birth,death]of logs) {
-        arr[birth-1950]++
-        arr[death-1950]--
-    };
-    for(let i=1;i<arr.length;i++) {
-        arr[i] += arr[i-1];
-        if(arr[i] > arr[year]) {
-            year=i;
-        }
+    let timeLine = new Array(101).fill(0);
+    let max = 0;
+    for (const [birth,death] of logs) {
+        timeLine[birth-1950] ++;
+        timeLine[death-1950]--;
     }
-    return year+1950
+    for(let i=1;i<timeLine.length;i++) {
+        timeLine[i] = timeLine[i] + timeLine[i-1];
+        if(timeLine[i] > timeLine[max]) max = i;
+    }
+    return max+1950;
 };

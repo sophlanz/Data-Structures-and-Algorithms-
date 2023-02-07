@@ -2,8 +2,8 @@
  * @param {number} capacity
  */
 var LRUCache = function(capacity) {
-    this.capacity = capacity;
     this.cache = new Map();
+    this.capacity = capacity;
 };
 
 /** 
@@ -28,7 +28,7 @@ LRUCache.prototype.put = function(key, value) {
     this.cache.set(key,value);
     if(this.cache.size > this.capacity) {
         const LRU = this.cache.keys().next().value;
-        this.cache.delete(LRU);
+        this.cache.delete(LRU)
     }
 };
 

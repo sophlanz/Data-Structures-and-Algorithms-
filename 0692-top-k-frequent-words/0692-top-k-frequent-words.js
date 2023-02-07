@@ -5,11 +5,11 @@
  */
 var topKFrequent = function(words, k) {
     words.sort();
-    let freqMap={};
-    for(let i=0;i<words.length;i++) {
-        const word = words[i];
+    let freqMap = {};
+    for(const word of words) {
         freqMap[word] ? freqMap[word]++ : freqMap[word] =1;
-    };
-    const values = Object.keys(freqMap).sort((a,b)=> freqMap[b]-freqMap[a]);
-    return values.splice(0,k)
-}
+    }
+   const values= Object.keys(freqMap).sort((a,b)=> freqMap[b]-freqMap[a]);
+    return values.slice(0,k);
+    
+};

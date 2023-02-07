@@ -3,17 +3,17 @@
  * @return {number[]}
  */
 var lexicalOrder = function(n) {
- let res = [];
+let res=[];
     const DFS = (num) => {
-        if(num *10 >n) return;
-        for(let i=num*10;i<=n && i< num*10+10;i++) {
+        if(num*10>n) return;
+        for(let i=num*10;i<=n && i<num*10+10;i++) {
             res.push(i);
-            DFS(i)
+            DFS(i);
         }
     }
-    for(let i=1;i<=n && i<=9;i++) {
+    for(let i=1;i<=9 && i<=n;i++){
         res.push(i);
         DFS(i)
     }
-    return res
+    return res;
 };

@@ -2,11 +2,11 @@
  * @param {number} n
  */
 var MRUQueue = function(n) {
-   this.queue = new Array(n).fill(0);
-    for(let i = 1; i <= this.queue.length; i++) {
-        this.queue[i-1] = i
+   this.queue =[];
+    while(n>0) {
+        this.queue.unshift(n);
+        n--
     }
-    console.log(this.queue)
 };
 /** 
  * @param {number} k

@@ -19,17 +19,15 @@
 var crawl = function(startUrl, htmlParser) {
     const getUrl = (url)=> url.split('/')[2];
     const baseUrl = getUrl(startUrl);
-   
     let seen = new Set([startUrl]);
- const DFS = (curr) => {
-     for(const url of htmlParser.getUrls(curr)) {
-         if(!seen.has(url)&& url.includes(baseUrl)) {
-             seen.add(url);
-             DFS(url);
-         }
-     }
- }
-        DFS(startUrl);
-    
+    const DFS=(curr)=> {
+        for(const url of htmlParser.getUrls(curr)) {
+            if(!seen.has(url)&& url.includes(baseUrl)) {
+                seen.add(url);
+                DFS(url);
+            }
+        }
+    }
+    DFS(startUrl);
     return [...seen]
 };

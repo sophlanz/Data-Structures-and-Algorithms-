@@ -5,20 +5,18 @@
  */
 var findLeastNumOfUniqueInts = function(arr, k) {
     let freqMap = {};
-   for(const num of arr) {
-      freqMap[num] ? freqMap[num]++ : freqMap[num] =1; 
-   }
- let freqValues = Object.values(freqMap).sort((a,b)=> a-b);
-   let ocurrences = freqValues.length;
-   
-    for (const num of freqValues){
-       if(k>= num) {
-           k-=num
-           ocurrences--
-       }
-        else {
-           return ocurrences
+    for(const val of arr) {
+        freqMap[val] ? freqMap[val]++ : freqMap[val]=1;
+    }
+    const values = Object.values(freqMap).sort((a,b)=> a-b);
+    let length = values.length;
+    for(const val of values) {
+        if(k>= val) {
+            k-= val;
+            length--
+        }else {
+            return length;
         }
     }
-    return ocurrences
+    return length
 };

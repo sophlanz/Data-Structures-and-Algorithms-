@@ -11,11 +11,12 @@ var LRUCache = function(capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function(key) {
-    if(!this.cache.has(key)) return -1
+    if(!this.cache.has(key))return -1;
     let val = this.cache.get(key);
     this.cache.delete(key);
     this.cache.set(key,val);
-    return val
+    return val;
+    
 };
 
 /** 
@@ -28,7 +29,7 @@ LRUCache.prototype.put = function(key, value) {
     this.cache.set(key,value);
     if(this.cache.size > this.capacity) {
         const LRU = this.cache.keys().next().value;
-        this.cache.delete(LRU)
+        this.cache.delete(LRU);
     }
 };
 

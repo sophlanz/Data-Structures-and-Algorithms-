@@ -11,7 +11,7 @@ var UndergroundSystem = function() {
  * @return {void}
  */
 UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
-    this.customer[id] = [stationName,t]
+    this.customer[id] = [stationName,t];
 };
 
 /** 
@@ -22,12 +22,13 @@ UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
  */
 UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
     const [startStation,startTime] = this.customer[id];
-    const duration = t- startTime;
-    const route = [startStation,stationName];
-    if(!this.avg[route]) this.avg[route] = [duration,1];
-    else {
-        const [totalTime, count] = this.avg[route];
-        this.avg[route] = [totalTime+duration, count+1];
+    const duration = t-startTime;
+    const key = [startStation,stationName];
+    if(!this.avg[key]) {
+        this.avg[key] = [duration,1];
+    }else {
+        const[totalTime,count] = this.avg[key];
+        this.avg[key] = [totalTime+duration,count +1];
     }
 };
 
@@ -37,9 +38,9 @@ UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
  * @return {number}
  */
 UndergroundSystem.prototype.getAverageTime = function(startStation, endStation) {
-    const route = [startStation,endStation];
-    const [totalTime,count] = this.avg[route];
-    return totalTime/count
+    const key = [startStation,endStation];
+    const[time, count] = this.avg[key];
+    return time/count
 };
 
 /** 

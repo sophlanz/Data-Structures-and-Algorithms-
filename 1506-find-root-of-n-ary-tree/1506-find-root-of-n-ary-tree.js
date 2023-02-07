@@ -11,13 +11,15 @@
  * @return {Node}
  */
 var findRoot = function(tree) {
-    let set = new Set([]);
-    for(const node of tree) {
-        for(const child of node.children) {
-            set.add(child.val);
-        }
+    let children = new Set()
+  for(const node of tree) {
+    if(node.children){
+          for(const child of node.children) {
+              children.add(child.val);
+          }
     }
+  }
     for(const node of tree) {
-        if(!set.has(node.val)) return node;
+        if(!children.has(node.val)) return node
     }
 };

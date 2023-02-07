@@ -12,7 +12,7 @@ var OrderedStream = function(n) {
  * @return {string[]}
  */
 OrderedStream.prototype.insert = function(idKey, value) {
-    this.stream[idKey-1]=value
+ this.stream[idKey-1] = value;
     let res=[];
     while(this.stream[this.pointer]) {
         res.push(this.stream[this.pointer])

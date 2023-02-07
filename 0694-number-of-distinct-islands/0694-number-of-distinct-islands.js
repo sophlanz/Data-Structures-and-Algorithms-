@@ -13,7 +13,7 @@ var numDistinctIslands = function(grid) {
         const dict = [[1,0,"D"], [-1,0,"U"], [0,1,"R"], [0,-1,"L"]];
         for(const [r,c,move] of dict) {
             str += move;
-            str += DFS(i+r, j+c)
+            str+=DFS(i+r, j+c)
          
         }
         return str;

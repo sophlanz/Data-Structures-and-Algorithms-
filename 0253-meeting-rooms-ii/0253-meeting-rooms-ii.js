@@ -12,8 +12,8 @@ var minMeetingRooms = function(intervals) {
             minHeap.dequeue().element;
         }
         minHeap.enqueue(interval[1]).element
-        minRooms = Math.max(minRooms,minHeap.size());
+      
     }
-    return minRooms
+    return minHeap.size()
     
 };

@@ -18,22 +18,20 @@ function connect(root: Node | null): Node | null {
     const findNextNode = (node)=> {
         while(node.next) {
             node = node.next;
-            if(node.left) return node.left;
+            if(node.left)return node.left
             if(node.right) return node.right;
         }
         return null
     }
     if(!root) return null;
-    if(root.left){
-        if(root.right) root.left.next = root.right
-        else {
-            root.left.next = findNextNode(root);
-        }
+    if(root.left) {
+        if(root.right) root.left.next = root.right;
+        else root.left.next = findNextNode(root)
     }
     if(root.right) {
-        if(root.next) root.right.next = findNextNode(root)
+        if(root.next) root.right.next = findNextNode(root);
     }
     connect(root.right);
-    connect(root.left)
+    connect(root.left);
     return root
 };

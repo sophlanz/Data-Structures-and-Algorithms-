@@ -3,24 +3,28 @@
  * @return {string}
  */
 var minRemoveToMakeValid = function(s) {
-  let idxStack = [],
-      balance=0;
+    let stack=[];
+    let count=0
     for(let i=0;i<s.length;i++) {
-        if(s[i] === "(") {
-            idxStack.push(i);
-            balance++
-        }else if (s[i]=== ")") {
-            if(balance > 0) {
-                idxStack.pop();
-                balance--
+        if(s[i]==="("){
+            count++
+            stack.push(i)
+        }else if (s[i]===")") {
+            if(count >0) {
+                 count--
+                 stack.pop();
             }else {
-                idxStack.push(i)
+                stack.push(i)
             }
+           
+           
         }
     }
-    let result = s.split('')
-    for(const idx of idxStack) {
-        result[idx] = "";
+    let res = s.split('');
+    for(const val of stack) {
+        res[val]="";
     }
-    return result.join('');
+    return res.join('')
+    
+  
 };

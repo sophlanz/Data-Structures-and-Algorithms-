@@ -3,6 +3,7 @@
  * @return {string[][]}
  */
 var partition = function(s) {
+   
   let res=[];
     const isPalindrome = (str)=> {
         let l=0;
@@ -16,15 +17,15 @@ var partition = function(s) {
         return true;
         
     }
-  const DFS = (arr,str)=> {
-      if(!str.length)res.push(arr);
-      for(let i=1;i<=str.length;i++){
-          let subStr = str.slice(0,i);
-          if(isPalindrome(subStr)){
-              DFS([...arr,subStr], str.slice(i))
-          }
-      }
-  }
+const DFS = (arr,str)=> {
+    if(!str.length)res.push(arr);
+    for(let i=1;i<=str.length;i++){
+        let subStr = str.slice(0,i);
+        if(isPalindrome(subStr)){
+            DFS([...arr,subStr],str.slice(i));
+        }
+    }
+}
     DFS([],s);
     return res;
 };

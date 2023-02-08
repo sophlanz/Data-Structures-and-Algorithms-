@@ -11,17 +11,15 @@
  * @return {TreeNode[]}
  */
 var findDuplicateSubtrees = function(root) {
- let idMap = {};
+let idMap={};
     let res=[]
+   
     const DFS = (node) => {
-        if(!node) return "#";
-        const id = node.val +","+ DFS(node.left) +","+DFS(node.right);
-        if(!idMap[id]) idMap[id] = 1;
-        else {
-            idMap[id]++
-        }
-        if(idMap[id]===2) res.push(node);
-        return id;
+        if(!node) return "#"
+        const id = node.val +','+ DFS(node.left)+","+DFS(node.right);
+        idMap[id] ? idMap[id]++ : idMap[id]=1;
+        if(idMap[id]===2)res.push(node);
+        return id
     }
     DFS(root);
     return res;

@@ -1,6 +1,6 @@
 
 var Leaderboard = function() {
-  this.leaderBoard = {};
+    this.leaderBoard = {};
 };
 
 /** 
@@ -9,7 +9,7 @@ var Leaderboard = function() {
  * @return {void}
  */
 Leaderboard.prototype.addScore = function(playerId, score) {
-    this.leaderBoard[playerId] = this.leaderBoard[playerId] + score || score;
+    this.leaderBoard[playerId] = this.leaderBoard[playerId]+score || score;
 };
 
 /** 
@@ -17,15 +17,15 @@ Leaderboard.prototype.addScore = function(playerId, score) {
  * @return {number}
  */
 Leaderboard.prototype.top = function(K) {
-    const scores = Object.values(this.leaderBoard).sort((a,b)=> b-a);
-    let i=0;
-    let res=0
+    const values = Object.values(this.leaderBoard).sort((a,b)=> b-a);
+    let idx=0
+    let sum=0
     while(K>0) {
-        res+= scores[i]
-        i++
+       sum += values[idx];
         K--
+        idx++
     }
-    return res
+   return sum
 };
 
 /** 

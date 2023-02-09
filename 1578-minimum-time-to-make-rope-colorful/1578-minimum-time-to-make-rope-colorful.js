@@ -3,16 +3,13 @@
  * @param {number[]} neededTime
  * @return {number}
  */
-var minCost = function(s, cost) {
-let res=0;
-    let max=0;
-    for(let i=0;i<s.length;i++){
-        res += cost[i];
-        max = Math.max(cost[i],max);
-        if(s[i] !== s[i+1]) {
-            res -= max
-            max =0
+var minCost = function(colors, neededTime) {
+    let time=0
+    for(let i=1;i<colors.length;i++) {
+        if(colors[i] === colors[i-1]) {
+            time += Math.min(neededTime[i], neededTime[i-1]);
+            neededTime[i]= Math.max(neededTime[i], neededTime[i-1])
         }
     }
-    return res
+    return time;
 };

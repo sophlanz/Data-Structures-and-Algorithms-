@@ -3,28 +3,29 @@
  * @return {number[]}
  */
 var largestDivisibleSubset = function(nums) {
- let memo = new Map();
-    let res=[]
-    nums.sort((a,b)=> a-b);
-    const dp = (idx) => {
+    nums.sort((a,b)=>a-b)
+let memo = new Map();
+    let res = [];
+    const DFS=(idx)=> {
         if(memo.has(idx)) return memo.get(idx);
-        let subSet=[]
+        let subset = [];
         for(let i=idx-1;i>=0;i--) {
-            if(nums[idx] % nums[i]===0) {
-                let prevSubset = dp(i);
-                if(prevSubset.length > subSet.length) subSet=prevSubset
+            if(nums[idx]%nums[i] ===0) {
+                let prevSubset = DFS(i);
+                if(prevSubset.length>subset.length)subset =prevSubset
             }
         }
-        let res = [...subSet,nums[idx]];
-        memo.set(idx, res);
-        return res;
+        let valid = [...subset,nums[idx]];
+        memo.set(idx,valid);
+        return valid
     }
     for(let i=nums.length-1;i>=0;i--) {
-        let curr = dp(i);
-        if(curr.length > res.length) {
-            res=curr;
-        }
+       let newSubset= DFS(i)
+    if(newSubset.length >res.length) {
+        res=newSubset
     }
+    }
+    console.log(res)
     return res;
 };
 

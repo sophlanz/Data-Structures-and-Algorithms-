@@ -5,26 +5,27 @@
  * @return {number}
  */
 var minDays = function(bloomDay, m, k) {
-if(m*k >bloomDay.length) return -1;
+    if(m*k > bloomDay.length) return -1
     let l = Math.min(...bloomDay);
-    let r = Math.max(...bloomDay);
-    
-    while(l<r){
+    let r= Math.max(...bloomDay);
+    while(l<r) {
         let mid = Math.floor((l+r)/2);
         let flowers=0;
-        let boquets=0;
-        for(const val of bloomDay){
-            if(val>mid) flowers=0
-            else {
-                flowers++
+        let bouqs=0;
+        for(const bloom of bloomDay) {
+            if(bloom >mid) {
+                flowers=0;
+            }else {
+                flowers++;
             }
-            if(flowers===k){
-                boquets++;
+            if(flowers >= k) {
+                bouqs++;
                 flowers=0;
             }
+            
         }
-        if(boquets >= m) r=mid
+        if(bouqs>= m) r=mid;
         else l=mid+1
     }
     return l
-}
+};

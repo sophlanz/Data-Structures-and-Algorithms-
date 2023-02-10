@@ -14,9 +14,9 @@ var minSetSize = function(arr) {
     let idx=0
     let sum=0;
     while(target>sum) {
-        sum += values[idx];
+        sum += values[idx++];
         count++
-        idx++
+        
     }
     return count
     

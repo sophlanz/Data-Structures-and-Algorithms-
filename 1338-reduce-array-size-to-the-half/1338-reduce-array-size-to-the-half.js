@@ -3,19 +3,21 @@
  * @return {number}
  */
 var minSetSize = function(arr) {
-let freqMap = {};
-    for(const val of arr) {
-        freqMap[val]? freqMap[val]++ :freqMap[val]=1;
+    let freqMap = {};
+    for(const num of arr) {
+        freqMap[num] ? freqMap[num]++ : freqMap[num]=1;
     }
-    const freqIntegers = Object.values(freqMap).sort((a,b)=> b-a);
-    let target = Math.floor(arr.length/2);
-    let sum = 0;
-    let idx=0;
-    let count=0
-    while(sum<target) {
-        sum +=  freqIntegers[idx];
+   let values= Object.values(freqMap).sort((a,b)=> b-a);
+    console.log(values)
+    let count=0;
+    let target = arr.length/2;
+    let idx=0
+    let sum=0;
+    while(target>sum) {
+        sum += values[idx];
         count++
         idx++
     }
-    return count;
+    return count
+    
 };

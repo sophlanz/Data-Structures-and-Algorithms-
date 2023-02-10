@@ -18,7 +18,7 @@ var minDays = function(bloomDay, m, k) {
             }else {
                 flowers++;
             }
-            if(flowers >= k) {
+            if(flowers === k) {
                 bouqs++;
                 flowers=0;
             }

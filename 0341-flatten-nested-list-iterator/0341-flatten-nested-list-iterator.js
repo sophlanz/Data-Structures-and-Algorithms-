@@ -28,22 +28,18 @@
  * @constructor
  * @param {NestedInteger[]} nestedList
  */
-
-function* listGenerator(nestedList) {
-    console.log({nestedList})
-    for (let el of nestedList) {
-        if (el.isInteger()) {
-            yield el.getInteger();
-        } else {
-            yield* listGenerator(el.getList());
+function* listGenerator (nestedList) {
+    for(const el of nestedList) {
+        if(el.isInteger()) {
+            yield el.getInteger()
+        }else {
+            yield* listGenerator(el.getList())
         }
     }
 }
-var NestedIterator = function(nestedList) {
-   this.gen = listGenerator(nestedList);
-    this.val = this.gen.next();
-  
-
+ var NestedIterator = function(nestedList) {
+    this.generator = listGenerator(nestedList);
+     this.val = this.generator.next();
 };
 
 
@@ -52,7 +48,7 @@ var NestedIterator = function(nestedList) {
  * @returns {boolean}
  */
 NestedIterator.prototype.hasNext = function() {
-  return !this.val.done;
+    return !this.val.done
 };
 
 /**
@@ -60,11 +56,9 @@ NestedIterator.prototype.hasNext = function() {
  * @returns {integer}
  */
 NestedIterator.prototype.next = function() {
-    var num = this.val.value;
-    console.log({num})
-    this.val = this.gen.next();
-    console.log(this.val)
-    return num;
+    const num = this.val.value;
+    this.val = this.generator.next()
+    return num
 };
 
 /**

@@ -22,6 +22,7 @@ TimeMap.prototype.set = function(key, value, timestamp) {
 TimeMap.prototype.get = function(key, timestamp) {
      if (!this.map.has(key)) return '';
     const items = this.map.get(key);
+    
     let left = 0, right = items.length - 1;
     while (left <= right) {
         const mid = Math.floor((left + right) / 2);

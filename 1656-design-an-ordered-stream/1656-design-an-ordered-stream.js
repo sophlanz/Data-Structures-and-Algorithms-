@@ -2,8 +2,8 @@
  * @param {number} n
  */
 var OrderedStream = function(n) {
-    this.pointer = 0;
-    this.stream = [];
+    this.stream = {};
+    this.pointer=0;
 };
 
 /** 
@@ -12,13 +12,13 @@ var OrderedStream = function(n) {
  * @return {string[]}
  */
 OrderedStream.prototype.insert = function(idKey, value) {
- this.stream[idKey-1] = value;
-    let res=[];
+    this.stream[idKey-1] = value;
+    let result=[];
     while(this.stream[this.pointer]) {
-        res.push(this.stream[this.pointer])
+        result.push(this.stream[this.pointer])
         this.pointer++
     }
-    return res;
+    return result;
 };
 
 /** 

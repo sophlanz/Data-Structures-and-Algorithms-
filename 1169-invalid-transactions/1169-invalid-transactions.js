@@ -9,7 +9,7 @@ var invalidTransactions = function(transactions) {
         if(amount > 1000) {
             invalid[i] = true;
         }
-        for(let j=0;j<transactions.length;j++) {
+        for(let j=i+1;j<transactions.length;j++) {
             const [name2,time2,amount2,city2] = transactions[j].split(',');
             if(name === name2 && Math.abs(time2-time)<=60 && city !== city2) {
                 invalid[i] = true;

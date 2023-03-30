@@ -1,7 +1,7 @@
 
 var RandomizedSet = function() {
+   this.map = new Map();
     this.set = [];
-    this.map = new Map();
 };
 
 /** 
@@ -12,7 +12,7 @@ RandomizedSet.prototype.insert = function(val) {
     if(this.map.has(val))return false
     this.map.set(val,this.set.length);
     this.set.push(val);
-    return true
+    return true;
 };
 
 /** 
@@ -22,7 +22,9 @@ RandomizedSet.prototype.insert = function(val) {
 RandomizedSet.prototype.remove = function(val) {
     if(!this.map.has(val)) return false
     const idx = this.map.get(val);
-    [this.set[idx], this.set[this.set.length-1]] = [this.set[this.set.length-1], this.set[idx]];
+    if(idx !== this.set.length-1) {
+        [this.set[idx], this.set[this.set.length-1]] = [this.set[this.set.length-1],this.set[idx]]
+    }
     this.set.pop();
     this.map.set(this.set[idx], idx);
     this.map.delete(val);

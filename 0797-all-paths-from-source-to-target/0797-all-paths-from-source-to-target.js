@@ -3,21 +3,17 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-   let stack = [[0]]
-      let  result = []
-        while (stack.length){
-           let array = stack.pop()
-            if (array[array.length-1] === graph.length-1) {
-                  result.push(array)
+    let stack=[[0]];
+    let res=[];
+    while(stack.length) {
+        let path = stack.pop();
+        if(path[path.length-1]=== graph.length-1) {
+            res.push(path);
+        }else {
+            for(const child of graph[path[path.length-1]]) {
+                stack.push([...path,child]);
             }
-           
-            for(const node of graph[array[array.length-1]])  {
-                stack.push([...array,node])
-            }
-                
         }
-           
-                
-        return result
+    }
+    return res;
 };
-

@@ -3,22 +3,22 @@
  * @return {number}
  */
 var longestMountain = function(arr) {
-let l=0,
-    r,
-    max=0,
-    p;
+  let l=0,m,r, maxLen=0;
     while(l<arr.length-2) {
-        p=l;
-        while(arr[p+1]>arr[p]) {
-            p++
+        m=l
+        while(arr[m] < arr[m+1] ) {
+            m++
         }
-        r=p
-        while(arr[r+1]<arr[r]) {
+        r=m
+        while(arr[r]>arr[r+1]) {
             r++
         }
-        if(arr[l]<arr[p] && arr[p]> arr[r]) max=Math.max(max,r-l+1);
-        l=Math.max(r,l+1);
-    }
-    return max;
     
+            if(arr[l]<arr[m] && arr[m]>arr[r]) maxLen = Math.max(r-l+1,maxLen);
+   
+       
+        
+        l = Math.max(l,l+1);
+    }
+    return maxLen
 };

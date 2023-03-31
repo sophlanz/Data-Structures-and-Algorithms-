@@ -8,14 +8,15 @@ var findTheWinner = function(n, k) {
     while(n>0) {
         queue.unshift(n);
         n--
-    }
-    while(queue.length !== 1) {
+    };
+    while(queue.length >1) {
         let x=k
-        while(x >1) {
-            queue.push(queue.shift())
+        while(x>1) {
+            queue.push(queue.shift());
             x--
         }
         queue.shift();
     }
     return queue[0];
+    
 };

@@ -4,28 +4,24 @@
  * @return {number}
  */
 var largestOverlap = function(img1, img2) {
+    let v1=[];
+    let v2=[];
     const rows = img1.length;
-    const cols = img1[0].length;
-    let vals1=[];
-    let vals2=[];
+    const cols = img2.length;
     for(let i=0;i<rows;i++) {
         for(let j=0;j<cols;j++) {
-            if(img1[i][j] === 1) {
-                vals1.push([i,j])
-            }
-            if(img2[i][j] === 1) {
-                vals2.push([i,j]);
-            }
+            if(img1[i][j]===1) v1.push([i,j]);
+            if(img2[i][j]===1)v2.push([i,j]);
         }
     }
-    let map ={};
-    let max=0
-    for(const v1 of vals1) {
-        for(const v2 of vals2) {
-            let diff = [v2[0]-v1[0], v2[1]-v1[1]]
-            map[diff] ? map[diff]++ : map[diff]=1;
-            max = Math.max(max, map[diff]);
+    let diffMap={};
+    let maxOverlap=0;
+    for(const val1 of v1) {
+        for(const val2 of v2) {
+            const diff = [val1[0]-val2[0], val1[1]-val2[1]]
+            diffMap[diff] ? diffMap[diff]++ : diffMap[diff] =1;
+            maxOverlap = Math.max(maxOverlap, diffMap[diff])
         }
     }
-    return max;
+    return maxOverlap
 };

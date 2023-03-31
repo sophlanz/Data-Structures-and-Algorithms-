@@ -3,15 +3,21 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-   let res=[];
-    const DFS = (array,index)=> {
-        if(array[array.length-1] === graph.length-1) {
-            res.push(array);
+   let stack = [[0]]
+      let  result = []
+        while (stack.length){
+           let array = stack.pop()
+            if (array[array.length-1] === graph.length-1) {
+                  result.push(array)
+            }
+           
+            for(const node of graph[array[array.length-1]])  {
+                stack.push([...array,node])
+            }
+                
         }
-        for(let i=0;i<graph[index].length;i++) {
-            DFS([...array,graph[index][i]],graph[index][i])
-        }
-    }
-    DFS([0],0);
-    return res;
+           
+                
+        return result
 };
+

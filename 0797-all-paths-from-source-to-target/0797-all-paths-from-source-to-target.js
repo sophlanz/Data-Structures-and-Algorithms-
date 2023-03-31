@@ -3,16 +3,15 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-    let res=[]
-    const DFS= (arr,num)=> {
-        if(arr[arr.length-1]=== graph.length-1) {
-            res.push(arr);
-            return;
+   let res=[];
+    const DFS = (array,index)=> {
+        if(array[array.length-1] === graph.length-1) {
+            res.push(array);
         }
-        for(let i=0;i<graph[num].length;i++) {
-            DFS([...arr,graph[num][i]],graph[num][i] )
+        for(let i=0;i<graph[index].length;i++) {
+            DFS([...array,graph[index][i]],graph[index][i])
         }
     }
-    DFS([0],0)
+    DFS([0],0);
     return res;
 };

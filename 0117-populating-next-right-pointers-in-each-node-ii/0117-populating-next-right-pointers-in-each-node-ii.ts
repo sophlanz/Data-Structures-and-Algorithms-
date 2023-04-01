@@ -19,19 +19,19 @@ function connect(root: Node | null): Node | null {
         while(node.next) {
             node = node.next;
             if(node.left) return node.left;
-            if(node.right) return node.right;
+            if(node.right) return node.right
         }
-        return null;
+        return null
     }
-    if(!root)return null;
+    if(!root) return null;
     if(root.left) {
         if(root.right) root.left.next = root.right;
-        else root.left.next = getNext(root)
+        else root.left.next = getNext(root);
     }
     if(root.right) {
-        root.right.next = getNext(root)
+        root.right.next = getNext(root);
     }
     connect(root.right);
     connect(root.left);
-    return root;
+    return root
 };

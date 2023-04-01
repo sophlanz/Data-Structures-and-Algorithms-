@@ -23,7 +23,7 @@ function connect(root: Node | null): Node | null {
         }
         return null
     }
-    if(!root) return null;
+  if(!root)return null;
     if(root.left) {
         if(root.right) root.left.next = root.right;
         else root.left.next = getNext(root);
@@ -31,7 +31,7 @@ function connect(root: Node | null): Node | null {
     if(root.right) {
         root.right.next = getNext(root);
     }
-    connect(root.right);
-    connect(root.left);
+    if(root.right)connect(root.right);
+    if(root.left)connect(root.left);
     return root
 };

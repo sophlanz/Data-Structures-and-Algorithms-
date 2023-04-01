@@ -17,12 +17,13 @@
  * @return {string[]}
 */
 var crawl = function(startUrl, htmlParser) {
-    const getUrl = (url)=> url.split('/')[2];
-    const baseUrl = getUrl(startUrl);
+    const getUrl = (url) => url.split('/')[2]; 
+    let base = getUrl(startUrl)
     let seen = new Set([startUrl]);
-    const DFS = (curr) => {
-        for(const url of htmlParser.getUrls(curr)) {
-            if(!seen.has(url)&& url.includes(baseUrl)) {
+ 
+    const DFS = (start)=> {
+        for(const url of htmlParser.getUrls(start) ) {
+            if(!seen.has(url) && url.includes(base)){
                 seen.add(url);
                 DFS(url);
             }
@@ -30,4 +31,5 @@ var crawl = function(startUrl, htmlParser) {
     }
     DFS(startUrl);
     return [...seen]
+    
 };

@@ -17,19 +17,20 @@
  * @return {string[]}
 */
 var crawl = function(startUrl, htmlParser) {
-    const getUrl = (url) => url.split('/')[2]; 
-    let base = getUrl(startUrl)
+    const getUrl = (url)=> url.split('/')[2];
+    const base = getUrl(startUrl);
+    let queue = [startUrl];
     let seen = new Set([startUrl]);
- 
-    const DFS = (start)=> {
-        for(const url of htmlParser.getUrls(start) ) {
-            if(!seen.has(url) && url.includes(base)){
+    while(queue.length) {
+        let start = queue.shift();
+        for(const url of htmlParser.getUrls(start)) {
+            if(!seen.has(url) && url.includes(base)) {
                 seen.add(url);
-                DFS(url);
+                queue.push(url);
             }
         }
     }
-    DFS(startUrl);
     return [...seen]
+   
     
 };

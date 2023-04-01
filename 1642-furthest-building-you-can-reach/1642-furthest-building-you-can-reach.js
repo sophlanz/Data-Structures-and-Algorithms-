@@ -5,23 +5,19 @@
  * @return {number}
  */
 var furthestBuilding = function(heights, bricks, ladders) {
-   let r=1, l=0;
     let minHeap = new MinPriorityQueue();
-    while(r<=heights.length-1) {
-        const building1 = heights[l];
-        const building2 = heights[r];
-        const diff = building2-building1
-        if(diff > 0 ) {
+    for(let i=1;i<heights.length;i++) {
+        const diff = heights[i]-heights[i-1];
+        if(diff >0){
             minHeap.enqueue(diff).element;
-            if(minHeap.size()>ladders) {
-                let brickDiff = minHeap.dequeue().element;
-                bricks -= brickDiff
+            if(minHeap.size()> ladders) {
+                let smallestDiff = minHeap.dequeue().element;
+                bricks -= smallestDiff;
+                if(bricks < 0) {
+                    return i-1
+                }
             }
-            if(bricks <0) return l
-             
         }
-        l++
-        r++
     }
-    return l
+    return heights.length-1
 };

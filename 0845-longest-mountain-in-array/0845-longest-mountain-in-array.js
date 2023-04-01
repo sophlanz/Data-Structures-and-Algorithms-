@@ -14,7 +14,7 @@ let l=0,p,r,maxLen=0;
             r++
         }
         if(arr[l]<arr[p]&& arr[p]> arr[r]) maxLen = Math.max(r-l+1,maxLen);
-        l = Math.max(l+1, l);
+        l++
     }
     return maxLen
 };

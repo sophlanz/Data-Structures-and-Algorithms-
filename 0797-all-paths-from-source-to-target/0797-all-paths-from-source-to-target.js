@@ -4,14 +4,15 @@
  */
 var allPathsSourceTarget = function(graph) {
     let res=[];
- const DFS = (path) => {
-     if(path[path.length-1]===graph.length-1) {
-         res.push(path);
-     }
-     for(const child of graph[path[path.length-1]]) {
-         DFS([...path,child]);
-     }
- }
- DFS([0])
+  let stack=[[0]];
+    while(stack.length) {
+        let path = stack.pop();
+        if(path[path.length-1]===graph.length-1) {
+            res.push(path)
+        }
+        for(const idx of graph[path[path.length-1]]) {
+            stack.push([...path, idx]);
+        }
+    }
     return res;
 };

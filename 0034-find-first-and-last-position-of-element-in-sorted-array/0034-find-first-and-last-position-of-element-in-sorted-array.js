@@ -14,30 +14,22 @@ var searchRange = function(nums, target) {
     while(l<=r) {
         let mid = Math.floor((l+r)/2);
         if(nums[mid]===target) {
-            indexes.push(mid);
-            let idx=mid;
-            while(nums[idx-1]===target) {
-                indexes.push(idx-1);
-                idx--
-                
+            //get start
+           let start=mid;
+            while(nums[start-1]===target) {
+                start--
             }
-            idx=mid;
-            while(nums[idx+1]===target){
-                indexes.push(idx+1);
-                idx++
+            let end=mid
+            while(nums[end+1]===target){
+                end++
             }
-            break;
+            return[start,end]
         }else if(nums[mid]<target) {
             l=mid+1
         }else{
             r=mid-1;
         }
     }
-    indexes.sort((a,b)=>a-b);
-    console.log(indexes)
-    let res = [indexes[0], indexes[indexes.length-1]];
-    
-    
-    return indexes.length ? res : [-1,-1]
+   return [-1,-1]
     
 };

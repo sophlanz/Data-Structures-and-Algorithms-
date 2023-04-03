@@ -3,16 +3,17 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-    let res=[];
-  let stack=[[0]];
-    while(stack.length) {
-        let path = stack.pop();
+    const paths=[];
+    const DFS = (path, index) => {
         if(path[path.length-1]===graph.length-1) {
-            res.push(path)
+            paths.push(path);
         }
-        for(const idx of graph[path[path.length-1]]) {
-            stack.push([...path, idx]);
+        for(let i=0;i<graph[index].length;i++) {
+            DFS([...path,graph[index][i]], graph[index][i])
         }
+        
     }
-    return res;
+    DFS([0],0)
+    return paths;
+  
 };

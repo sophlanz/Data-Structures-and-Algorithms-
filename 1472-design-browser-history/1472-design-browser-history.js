@@ -1,16 +1,16 @@
 /**
  * @param {string} homepage
  */
-class Node{
-    constructor(val,next,prev) {
-        this.val = val
-        this.next =next
-        this.prev = prev
+class Node {
+    constructor(val,next,prev){
+        this.val=val
+        this.next=next
+        this.prev=prev
     }
 }
 var BrowserHistory = function(homepage) {
-    let node = new Node(homepage,null,null);
-    this.curr = node;
+  let node= new Node(homepage,null,null);
+    this.curr = node
 };
 
 /** 
@@ -20,7 +20,7 @@ var BrowserHistory = function(homepage) {
 BrowserHistory.prototype.visit = function(url) {
     let node = new Node(url,null,null);
     this.curr.next = node;
-    this.curr.next.prev = this.curr;
+    node.prev = this.curr;
     this.curr = node;
 };
 
@@ -29,11 +29,11 @@ BrowserHistory.prototype.visit = function(url) {
  * @return {string}
  */
 BrowserHistory.prototype.back = function(steps) {
-    while(steps && this.curr.prev) {
+    while(steps && this.curr.prev){
         this.curr = this.curr.prev;
-       steps--
+        steps--
     }
-    return this.curr.val;
+    return this.curr.val
 };
 
 /** 
@@ -41,11 +41,11 @@ BrowserHistory.prototype.back = function(steps) {
  * @return {string}
  */
 BrowserHistory.prototype.forward = function(steps) {
-    while(steps && this.curr.next) {
+    while(steps && this.curr.next){
         this.curr = this.curr.next
         steps--
     }
-return this.curr.val
+    return this.curr.val
 };
 
 /** 

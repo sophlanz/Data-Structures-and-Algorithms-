@@ -1,4 +1,4 @@
-/**
+ /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
  *     this.val = (val===undefined ? 0 : val)
@@ -11,19 +11,19 @@
  * @return {number}
  */
 var widthOfBinaryTree = function(root) {
-    let queue=[[root,0]];
-    let max=0
-    while(queue.length) {
-        const levelSize = queue.length;
-        const minIndex = queue[0][1];
-        const maxIndex = queue[queue.length-1][1]
-        for(let i=0;i<levelSize;i++) {
-            const [node,index] = queue.shift();
-            let normalizedIndex = index-minIndex
+ let queue = [[root,0]];
+    let max=0;
+    while(queue.length){
+        let levelSize = queue.length;
+        let minIndex = queue[0][1];
+        let maxIndex = queue[queue.length-1][1]
+        for(let i=0;i<levelSize;i++){
+            let [node,index] = queue.shift();
+            let normalizedIndex = index-minIndex;
             if(node.left)queue.push([node.left,normalizedIndex*2])
-            if(node.right)queue.push([node.right,(normalizedIndex*2)+1])
+            if(node.right)queue.push([node.right,normalizedIndex*2+1])
         }
-        max = Math.max(max,maxIndex-minIndex+1)
+        max=Math.max(max, maxIndex-minIndex+1)
     }
     return max
 };

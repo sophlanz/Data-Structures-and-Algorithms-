@@ -24,3 +24,5 @@ var numIslands = function(grid) {
     }
     return count;
 };
+//Time O(m*n) traverse matrix
+//Space O(m*n)potential recursive call stack

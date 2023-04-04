@@ -3,33 +3,29 @@
  * @return {string}
  */
 var decodeString = function(s) {
-  let str="",
-        stack=[];
+   let str='';
     let num=0;
-    for(let i=0;i<s.length;i++) {
-        let char = s[i]
-      
-        if(char==="["){
-            console.log(num)
+    let stack=[];
+    for(let i=0;i<s.length;i++){
+        let char = s[i];
+        if(char=="[") {
             stack.push(num);
             stack.push(str);
-           
             num=0;
-            str="";
-        }else if(char==="]"){
-            let prevString = stack.pop();
-            let currNum = stack.pop();
-           
-            str = prevString + str.repeat(currNum);
-        
+            str='';
+        }else if(char == ']'){
+            let prevStr = stack.pop();
+            let prevNum = stack.pop();
+            str = prevStr + str.repeat(prevNum);
         }else if(!isNaN(char)){
-          
             num = num*10 + parseInt(char);
-          console.log(num)
-        }else {
+        }else{
             str += char
-          
         }
     }
-    return str;
-};
+    return str
+    
+}
+           
+        
+     

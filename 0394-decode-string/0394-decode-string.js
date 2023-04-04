@@ -3,7 +3,7 @@
  * @return {string}
  */
 var decodeString = function(s) {
-    let str="",
+  let str="",
         stack=[];
     let num=0;
     for(let i=0;i<s.length;i++) {

@@ -4,8 +4,8 @@
  */
 var SparseVector = function(nums) {
     this.nums=[];
-    for(let i=0;i<nums.length;i++) {
-        if(nums[i] !== 0) this.nums.push([nums[i],i])
+    for(let i=0;i<nums.length;i++){
+        if(nums[i]!==0)this.nums.push([nums[i],i]);
     }
 };
 
@@ -15,18 +15,21 @@ var SparseVector = function(nums) {
  * @return {number}
  */
 SparseVector.prototype.dotProduct = function(vec) {
-    let p1=0,
-        sum=0,
-        p2=0;
-    while(p1 <this.nums.length && p2<vec.nums.length) {
-        if(this.nums[p1][1]=== vec.nums[p2][1]){
-            sum += this.nums[p1][0] * vec.nums[p2][0];
-            p1++
-            p2++
-        }else {
-            if(this.nums[p1][1]< vec.nums[p2][1]) p1++
-            else p2++
+    let a=0
+    let b=0;
+    let sum=0;
+    while(a<this.nums.length && b<vec.nums.length) {
+        const [valA,idxA] = this.nums[a];
+        const [valB,idxB] = vec.nums[b];
+        if(valA !==0 && valB !==0 && idxA == idxB)  {
+            sum+= valA * valB
+            a++
+            b++
+        }else{
+            if(idxA<idxB) a++
+            else b++
         }
+        
     }
     return sum
     

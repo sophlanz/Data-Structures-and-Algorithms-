@@ -2,8 +2,8 @@
  * @param {number} n
  */
 var MRUQueue = function(n) {
-    this.queue = [];
-    while(n>0) {
+    this.queue=[];
+    while(n>0){
         this.queue.unshift(n);
         n--
     }
@@ -14,11 +14,9 @@ var MRUQueue = function(n) {
  * @return {number}
  */
 MRUQueue.prototype.fetch = function(k) {
-    let val = this.queue[k-1];
-    this.queue.splice(k-1,1);
-    this.queue.push(val)
+    let val = this.queue.splice(k-1,1);
+    this.queue.push(val);
     return val
-    
 };
 
 /** 

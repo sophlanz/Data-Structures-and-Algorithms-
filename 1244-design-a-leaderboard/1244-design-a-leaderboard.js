@@ -9,7 +9,7 @@ var Leaderboard = function() {
  * @return {void}
  */
 Leaderboard.prototype.addScore = function(playerId, score) {
-    this.leaderBoard[playerId] = this.leaderBoard[playerId]+score || score;
+    this.leaderBoard[playerId] = this.leaderBoard[playerId] + score || score;
 };
 
 /** 
@@ -18,14 +18,13 @@ Leaderboard.prototype.addScore = function(playerId, score) {
  */
 Leaderboard.prototype.top = function(K) {
     const values = Object.values(this.leaderBoard).sort((a,b)=> b-a);
-    let idx=0
-    let sum=0
-    while(K>0) {
-       sum += values[idx];
-        K--
+    let idx=0;
+    let sum=0;
+    while(idx<K){
+        sum += values[idx];
         idx++
     }
-   return sum
+    return sum
 };
 
 /** 

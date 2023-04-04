@@ -20,3 +20,5 @@ var merge = function(intervals) {
     merged.push([start,end]);
     return merged;
 };
+//Time Complexity O(nlogn) sorting;
+//Space Complexity O(n )size of intervals array

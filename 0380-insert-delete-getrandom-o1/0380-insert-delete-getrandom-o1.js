@@ -1,7 +1,7 @@
 
 var RandomizedSet = function() {
-   this.map = new Map();
-    this.set = [];
+    this.map = new Map();
+    this.set=[];
 };
 
 /** 
@@ -9,8 +9,8 @@ var RandomizedSet = function() {
  * @return {boolean}
  */
 RandomizedSet.prototype.insert = function(val) {
-    if(this.map.has(val))return false
-    this.map.set(val,this.set.length);
+    if(this.map.has(val)) return false;
+    this.map.set(val, this.set.length);
     this.set.push(val);
     return true;
 };
@@ -20,22 +20,23 @@ RandomizedSet.prototype.insert = function(val) {
  * @return {boolean}
  */
 RandomizedSet.prototype.remove = function(val) {
-    if(!this.map.has(val)) return false
-    const idx = this.map.get(val);
-    if(idx !== this.set.length-1) {
-        [this.set[idx], this.set[this.set.length-1]] = [this.set[this.set.length-1],this.set[idx]]
+    if(!this.map.has(val)) return false;
+    const index = this.map.get(val);
+    if(index !== this.set.length-1) {
+        [this.set[index], this.set[this.set.length-1]] = [this.set[this.set.length-1], this.set[index]];
     }
     this.set.pop();
-    this.map.set(this.set[idx], idx);
     this.map.delete(val);
+    this.map.set(this.set[index], index);
     return true;
+    
 };
 
 /**
  * @return {number}
  */
 RandomizedSet.prototype.getRandom = function() {
-    return this.set[Math.floor(Math.random() * this.set.length)]
+    return this.set[Math.floor(Math.random()*this.set.length)]
 };
 
 /** 

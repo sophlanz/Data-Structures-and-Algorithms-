@@ -19,3 +19,5 @@ var findTheWinner = function(n, k) {
     }
     return queue[0];
 };
+//Time O(n*k), we have to perform k iterations pushing and shifting in and out of array, until all but 1 eliminated
+//Space O(n)size of players in queues

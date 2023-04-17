@@ -13,10 +13,25 @@
  * @return {Node}
  */
 var connect = function(root) {
-    if(!root) return null
-    if(root.right && root.left) root.left.next = root.right;
-    if(root.next && root.right) root.right.next = root.next.left;
-    connect(root.left);
+    const findNext = (node)=> {
+        while(node.next){
+            node=node.next;
+            if(node.left)return node.left;
+            if(node.right)return node.right
+        }
+        return null;
+    }
+    if(!root) return null;
+    if(root.left){
+        if(root.right) root.left.next = root.right;
+        else{
+            root.left.next = findNext(root);
+        }
+    }
+    if(root.right){
+        root.right.next = findNext(root);
+    }
     connect(root.right);
+    connect(root.left);
     return root
 };

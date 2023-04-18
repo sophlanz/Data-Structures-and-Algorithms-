@@ -3,13 +3,8 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-  let freqMap={};
-    for(let i=0;i<nums.length;i++){
-        if(!freqMap[nums[i]]) {
-            freqMap[nums[i]]=1;
-        }else{
-            return true;
-        }
-    }
-    return false
+  let set = new Set(nums);
+    if(nums.length === set.size) return false
+    else return true
+    
 };

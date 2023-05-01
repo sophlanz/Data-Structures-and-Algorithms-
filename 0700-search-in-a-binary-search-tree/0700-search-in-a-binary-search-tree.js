@@ -12,14 +12,9 @@
  * @return {TreeNode}
  */
 var searchBST = function(root, val) {
-    let queue=[root];
-    while(queue.length){
-        let node = queue.shift();
-        if(node.val===val){
-            return node;
-        }
-        if(node.left)queue.push(node.left);
-        if(node.right)queue.push(node.right)
-    }
-    return null;
+    if(!root)return null
+  if(root.val === val)return root;
+    if(val<root.val) return searchBST(root.left,val)
+    if(val>root.val) return searchBST(root.right,val)
+  
 };

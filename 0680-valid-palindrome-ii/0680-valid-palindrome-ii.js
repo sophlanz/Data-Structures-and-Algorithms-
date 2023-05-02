@@ -15,7 +15,10 @@ var validPalindrome = function(s) {
     let l=0,r=s.length-1;
     while(l<r){
         if(s[l]!== s[r]){
-            return(isPalindrome(l+1,r) || isPalindrome(l,r-1)) 
+            console.log(isPalindrome(l+1,r))
+            console.log(isPalindrome(l,r-1))
+            if(isPalindrome(l+1,r) || isPalindrome(l,r-1))return true
+            else return false
         }
         l++
         r--

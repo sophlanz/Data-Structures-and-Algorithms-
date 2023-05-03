@@ -12,7 +12,6 @@ let count=0;
       
     let sortedMap = Object.values(freqMap).sort((a,b)=> b-a);
     let idx=0
-    console.log(sortedMap)
     for(const val of sortedMap){
         if(idx<9){
             count += val

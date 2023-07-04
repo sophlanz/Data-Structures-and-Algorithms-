@@ -3,16 +3,22 @@
  * @return {number[][]}
  */
 var generate = function(numRows) {
-     const pt = []
-  for(let i = 0; i< numRows; i++) {
-    pt[i] = []
-    for(let j = 0; j < i+1; j++) {
-      if(j === 0 || j === i) {
-        pt[i][j] = 1
-      } else {
-        pt[i][j] = pt[i-1][j-1] + pt[i-1][j]
+    let res=[[1]];
+    for(let i=1;i<numRows;i++){
+        let currRow=[1];
+        let currIdx=1;
+      while(currRow.length !== i){
+          if(res[i-1]) {
+                let sum = res[i-1][currIdx-1] + res[i-1][currIdx]
+          currRow.push(sum);
+          currIdx++
+          }else{
+              break
+          }
       }
-    } 
-  }
-  return pt
+        currRow.push(1);
+        res.push(currRow)
+    }
+    return res;
+    
 };

@@ -14,8 +14,6 @@ var isValid = function(s) {
          //if its closing
          if(map[char]){
              let prevChar = stack.pop();
-             console.log(map[char])
-             console.log(prevChar)
              if(map[char]!==prevChar) return false;
          }else{
              //if its opening 

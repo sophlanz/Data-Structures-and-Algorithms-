@@ -11,28 +11,18 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
- let curr=head;
-    let counter=0;
-    while(curr){
-        curr= curr.next
-        counter++
+  let curr = head, node = head
+    
+    while(n--){
+        curr = curr.next
     }
-    if(counter ===1) return null
-    //delete n-1
-    //remove counter-n+1
-    //connect counter-n+2 and counter-n
-    curr=head;
-    let idx=0
-    while(curr){
-        if(counter===n){
-            return curr.next
-        }
-        if(idx === counter-n-1) {
-            curr.next = curr.next.next
-        }
-        curr=curr.next
-        idx++
+    while(curr && curr.next ) {
+        curr = curr.next
+        node = node.next
     }
- 
- return head
+    
+    if(!curr)  head = head.next
+    else node.next = node.next.next
+
+    return head
 };

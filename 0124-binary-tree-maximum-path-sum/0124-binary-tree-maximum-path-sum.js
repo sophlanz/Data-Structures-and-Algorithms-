@@ -11,7 +11,7 @@
  * @return {number}
  */
 var maxPathSum = function(root) {
-    let max = -Infinity;
+    let max = root.val;
     const findMax = (node)=>{
         if(node === null) return 0;
         let left = findMax(node.left);

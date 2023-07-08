@@ -15,7 +15,6 @@ var matrixReshape = function(mat, r, c) {
     }
     let res=Array.from({length:r},()=> Array.from({length:c}))
     for(let i=0;i<r;i++){
-          if(!all.length) return mat;
         for(let j=0;j<c;j++){
              if(!all.length) return mat;
             let val = all.shift();

@@ -10,14 +10,14 @@ var canPlaceFlowers = function(flowerbed, n) {
            map[i] = 1;
        }
    }
-    let count =0;
+
     for(let i=0;i<flowerbed.length;i++){
         if(flowerbed[i]===0){
             if(!map[i-1] && !map[i+1]){
-                count++
+                n--
                 map[i] =1;
             }
         }
     }
-    return count >= n
+    return n<=0
 };

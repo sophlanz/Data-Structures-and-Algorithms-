@@ -12,12 +12,7 @@ var longestPalindrome = function(s) {
             delete freqMap[char];
         }
     }
-    for(const char in freqMap){
-        if(freqMap[char]===1) {
-            count++
-            break;
-        }
-    }
-    return count===0 ? 1 : count ;
+ 
+    return count < s.length ? count+1 : count ;
     
 };

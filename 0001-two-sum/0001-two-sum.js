@@ -4,12 +4,14 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-  let idxMap={};
+    let idxMap={};
     for(let i=0;i<nums.length;i++){
-        if(target-nums[i] in idxMap) {
-            return [idxMap[target-nums[i]],i];
-        }else{
-            idxMap[nums[i]] = i;
+        let num=nums[i];
+        if(Object.keys(idxMap).length !==0){
+            if(target-num in idxMap){
+                return [idxMap[target-num],i ];
+            }
         }
+        idxMap[num]=i;
     }
 };

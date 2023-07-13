@@ -10,12 +10,11 @@ var combine = function(n, k) {
     n--
 }
        let res=[];
-    let memo={}
 
     const DFS=(arr,rest)=>{
-        if(arr.length===k && !(arr in memo)){
+        if(arr.length===k ){
             res.push(arr)
-            memo[arr]=1
+          
         }
     for(let i=0;i<rest.length;i++){
         DFS([...arr,rest[i]],[...rest.slice(i+1)])

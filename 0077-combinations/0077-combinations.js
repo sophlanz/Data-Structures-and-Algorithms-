@@ -11,13 +11,7 @@ var combine = function(n, k) {
 }
        let res=[];
     let memo={}
-    if(k===1) {
-        for(const num of nums){
-            res.push([num])
-        }
-        return res;
-    }
- 
+
     const DFS=(arr,rest)=>{
         if(arr.length===k && !(arr in memo)){
             res.push(arr)

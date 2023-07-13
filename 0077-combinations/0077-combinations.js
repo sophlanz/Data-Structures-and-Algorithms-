@@ -4,26 +4,19 @@
  * @return {number[][]}
  */
 var combine = function(n, k) {
-    let nums=[];
-    while(n > 0){
-    nums.unshift(n)
-    n--
-}
        let res=[];
-
-    const DFS=(arr,rest)=>{
+    const DFS=(arr,start)=>{
         if(arr.length===k ){
             res.push(arr)
-          
+          return;
         }
-    for(let i=0;i<rest.length;i++){
-        DFS([...arr,rest[i]],[...rest.slice(i+1)])
+    for(let i=start;i<=n;i++){
+        DFS([...arr,i],i+1)
     }
         
     }
-    DFS([],nums)
-    return res
-    
+    DFS([],1)
+    return res 
 };
 //     1 2 3 4
 //      1

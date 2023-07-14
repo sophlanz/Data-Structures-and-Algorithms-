@@ -6,26 +6,27 @@
 var exist = function(board, word) {
     const rows = board.length;
     const cols = board[0].length;
-    const DFS = (i,j,idx)=> {
-        if(idx===word.length) return true;
-        if(i<0 || j<0 || i>=rows || j>= cols || board[i][j] !== word[idx]) return false;
-        board[i][j]="#";
-        if(DFS(i+1,j,idx+1)||
-          DFS(i-1,j,idx+1)||
-          DFS(i,j+1,idx+1)||
-          DFS(i,j-1,idx+1)) return true
-        else {
-            board[i][j] = word[idx];
-            
+    const DFS = (i,j,index)=> {
+        if(index == word.length) return true;
+        if(i<0 || j<0 || i>=rows || j>=cols || board[i][j] !== word[index]) return;
+        board[i][j]='-1'
+        if(DFS(i,j+1,index+1) ||
+           DFS(i,j-1,index+1)||
+           DFS(i-1,j,index+1)||
+           DFS(i+1,j,index+1)
+          )return true
+        else{
+            board[i][j]=word[index]
+            return false
         }
         
     }
-    for(let i=0;i<rows;i++) {
-        for(let j=0;j<cols;j++) {
-            if(board[i][j] === word[0]) {
-                if(DFS(i,j,0)) return true;
+    for(let i=0;i<rows;i++){
+        for(let j=0;j<cols;j++){
+            if(board[i][j] === word[0]){
+               if(DFS(i,j,0)) return true
             }
         }
     }
-    return false;
+    return false
 };

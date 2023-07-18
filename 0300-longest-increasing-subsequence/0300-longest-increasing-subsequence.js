@@ -3,22 +3,18 @@
  * @return {number}
  */
 var lengthOfLIS = function(nums) {
-    let res= [];
-    let size = 0;
-    for (let num of nums) {
-        let l = 0, r = size;
-        while (l != r) {
-            let mid = Math.floor((l + r) / 2)
-
-            if (res[mid] < num)
-                l = mid + 1;
-            else
-                r = mid;
+    let res = new Array(nums.length).fill(1);
+    for(let i=1;i<nums.length;i++){
+        let j=0;
+        while(j<i){
+             if(nums[j]<nums[i]){
+            res[i]=Math.max(res[j]+1, res[i])
+            j++
+        }else{
+            j++
         }
-        res[l] = num;
-        if (l == size) ++size;
+        }
+       
     }
-    return size;
-
+    return Math.max(...res)
 };
-[10,9,2,5,3,7,101,18]

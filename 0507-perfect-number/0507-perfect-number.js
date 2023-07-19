@@ -5,7 +5,7 @@
 var checkPerfectNumber = function(num) {
     let x= 1;
     let divisors = [];
-    while(x< num){
+    while(x<= num/2){
         if(num%x === 0)divisors.push(x);
         x++
     }

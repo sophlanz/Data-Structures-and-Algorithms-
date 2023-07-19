@@ -3,15 +3,10 @@
  * @return {boolean}
  */
 var isPowerOfTwo = function(n) {
-     if(n === 1){
-        return true;
-    }else if(n <= 0){
-        return false;
+   let product =1;
+    while(product <=n){
+        if(product === n)return true;
+        product *= 2
     }
-    
-    if(n%2 !== 0){
-        return false;
-    }else{
-        return isPowerOfTwo(Math.floor(n/2));    
-    }
+    return false
 };

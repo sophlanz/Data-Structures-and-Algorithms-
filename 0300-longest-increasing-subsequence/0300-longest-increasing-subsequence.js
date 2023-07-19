@@ -3,18 +3,33 @@
  * @return {number}
  */
 var lengthOfLIS = function(nums) {
-    let res = new Array(nums.length).fill(1);
+    let dp=[];
+    dp[0]=0;
+    let paths =[];
     for(let i=1;i<nums.length;i++){
-        let j=0;
-        while(j<i){
-             if(nums[j]<nums[i]){
-            res[i]=Math.max(res[j]+1, res[i])
-            j++
+        if(nums[i] > nums[dp[dp.length-1]]){
+          dp.push(i);
         }else{
-            j++
+            if(nums[i]<nums[dp[0]]) dp[0]=i
+            else{
+                let l=0,r=dp.length-1;
+            while(l<r){
+                let mid = Math.floor((l+r)/2)
+                if(nums[dp[mid]]=== nums[i]) {
+                    l=mid
+                    break;
+                }
+                if(nums[dp[mid]] > nums[i] ){
+                    r=mid
+                }else{
+                    l=mid+1
+                }
+            }
+                dp[l]=i;
+            }
+           
         }
-        }
-       
     }
-    return Math.max(...res)
+   
+    return dp.length
 };

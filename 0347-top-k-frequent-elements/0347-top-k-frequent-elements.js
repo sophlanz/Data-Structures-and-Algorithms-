@@ -9,7 +9,6 @@ var topKFrequent = function(nums, k) {
         num in freqMap ? freqMap[num]++ : freqMap[num]=1;
     }
   let sorted= Object.entries(freqMap).sort((a, b) => b[1] - a[1]).map(([key,value]) => key);
-    console.log(sorted)
     return sorted.slice(0,k)
 
     

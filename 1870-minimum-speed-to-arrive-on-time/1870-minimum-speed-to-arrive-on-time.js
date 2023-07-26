@@ -4,8 +4,9 @@
  * @return {number}
  */
 var minSpeedOnTime = function(dist, hour) {
-let l=0,r=10000000;
+let l=0,r=10e7;
 let min=Infinity
+let totalHours
 if(dist.length-1 >= hour )return -1
     while(l<r){
         let mid = Math.floor((l+r)/2);

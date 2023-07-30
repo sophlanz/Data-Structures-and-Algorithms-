@@ -31,7 +31,6 @@ for(let i=0;i<leaves.length;i++){
         }
         order.push(second);
     }
-    console.log({order})
     return numCourses === order.length
 };
   

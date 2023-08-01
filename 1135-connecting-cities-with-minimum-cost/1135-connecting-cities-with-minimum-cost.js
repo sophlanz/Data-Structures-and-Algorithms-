@@ -4,30 +4,28 @@
  * @return {number}
  */
 var minimumCost = function(n, connections) {
-    const graph = new Map();
-    for(let i=1;i<=n;i++){
-        graph.set(i,new Map());
+    connections.sort((a,b)=> a[2]-b[2])
+    const parent=[];
+    for(let i=0;i<=n;i++){
+        parent.push(i);
     }
-    for(let [to,from,dist] of connections){
-        if(graph.get(to).has(from)){
-            dist = Math.min(dist, graph.get(to).get(from));
+    const find = (child)=>{
+        if(parent[child]===child)return child;
+        else{
+            parent[child]=find(parent[child])
+            return parent[child];
         }
-        graph.get(to).set(from,dist);
-        graph.get(from).set(to,dist)
     }
-    let minHeap = new MinPriorityQueue();
-    minHeap.enqueue(1,0);
     let cost=0;
-    let seen= new Set();
-    while(minHeap.size()){
-        const {element,priority}=minHeap.dequeue();
-        if(seen.size ===n)return cost
-        if(seen.has(element))continue;
-        cost += priority;
-        seen.add(element);
-        for(const [node,distance] of graph.get(element)){
-            minHeap.enqueue(node,distance)
+    let seen=1;
+    for(const [to,from,dist] of connections){
+        if(find(to) !== find(from)){
+            parent[find(from)] = find(to)
+             seen++
+            cost += dist
         }
     }
-    return -1
+
+    return seen===n ? cost : -1
+   
 };

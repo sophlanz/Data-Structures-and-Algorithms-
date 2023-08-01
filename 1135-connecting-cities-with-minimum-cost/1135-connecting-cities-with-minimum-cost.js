@@ -5,7 +5,6 @@
  */
 var minimumCost = function(n, connections) {
 	const parent = new Array(n + 1).fill(0).map((el, i) => i);
-    console.log(parent)
 	const find = (t) => (t === parent[t] ? t : (parent[t] = find(parent[t])));
 	connections.sort((x, y) => x[2] - y[2]);
 	let cost = 0;

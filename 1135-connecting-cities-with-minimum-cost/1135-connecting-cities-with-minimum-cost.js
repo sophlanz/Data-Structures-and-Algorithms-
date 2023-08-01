@@ -20,7 +20,7 @@ var minimumCost = function(n, connections) {
     let seen=1;
     for(const [to,from,dist] of connections){
         if(findParent(to) !== findParent(from)){
-            parent[findParent(from)] = findParent(to)
+            parent[findParent(to)] = findParent(from)
              seen++
             cost += dist
         }

@@ -6,32 +6,30 @@
  * @return {boolean}
  */
 var validPath = function(n, edges, source, destination) {
-    if(!edges.length && source===destination)return true
-    let adjList = {};
-    for(const [start,end] of edges){
-        if(start in adjList){
-            adjList[start].push(end);
+    let graph = new Map();
+    for(const [to,from]of edges){
+        if(graph.has(to)){
+            graph.get(to).push(from);
         }else{
-            adjList[start]=[end];
+            graph.set(to,[from]);
         }
-        if(end in adjList){
-            adjList[end].push(start);
+        if(graph.has(from)){
+            graph.get(from).push(to);
         }else{
-            adjList[end]=[start]
+            graph.set(from,[to]);
         }
     }
+    let queue = [source];
     let seen = new Set();
-let queue=[source];
-    seen.add(source);
+    seen.add(source)
     while(queue.length){
-        let start = queue.shift();
-        if(start in adjList ){
-            for(const child of adjList[start]){
-                if(child==destination)return true;
-                if(!seen.has(child)){
-                    queue.push(child) 
-                    seen.add(child)
-                }
+        let node = queue.shift();
+        if(node === destination)return true;
+        for(const child of graph.get(node)){
+            if(child ==destination)return true;
+            if(!seen.has(child)){
+                queue.push(child);
+                seen.add(child);
             }
         }
     }

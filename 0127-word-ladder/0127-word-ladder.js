@@ -25,10 +25,10 @@ var ladderLength = function(beginWord, endWord, wordList) {
     queue.push(beginWord);
     set.add(beginWord);
 
-    let reVal = 1;
+    let count = 1;
     while (queue.length > 0) {
         let levelSize = queue.length;
-        while (levelSize > 0) {
+        for(let j=0;j<levelSize;j++) {
             const word = queue.shift();
             const wordChars = word.split('');
             for (let i = 0; i < wordChars.length; i++) {
@@ -37,7 +37,7 @@ var ladderLength = function(beginWord, endWord, wordList) {
                 const words = adjList.get(wordChars.join('')) || [];
                 for (const wordToAdd of words) {
                     if (wordToAdd === endWord) {
-                        return reVal + 1;
+                        return count+1
                     }
                     if (!set.has(wordToAdd)) {
                         queue.push(wordToAdd);
@@ -46,9 +46,8 @@ var ladderLength = function(beginWord, endWord, wordList) {
                 }
                 wordChars[i] = savedChar;
             }
-            levelSize--;
         }
-        reVal += 1;
+       count++
     }
     return 0;
 

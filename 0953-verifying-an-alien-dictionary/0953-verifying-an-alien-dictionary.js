@@ -9,6 +9,7 @@ let letterOrder = new Array(order.length).fill(0);
     for(let i=0;i<order.length;i++){
         letterOrder[order.charCodeAt(i)-97] = i
     }
+    console.log(letterOrder)
         for(let i=0;i<words.length-1;i++){
             if(words[i].startsWith(words[i+1]) && words[i].length !== words[i+1].length){
                 return false

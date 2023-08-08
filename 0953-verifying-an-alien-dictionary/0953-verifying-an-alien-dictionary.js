@@ -10,7 +10,7 @@ let letterOrder = new Array(order.length).fill(0);
         letterOrder[order.charCodeAt(i)-97] = i
     }
         for(let i=0;i<words.length-1;i++){
-            if(words[i].startsWith(words[i+1]) && words[i].length > words[i+1].length){
+            if(words[i].startsWith(words[i+1]) && words[i].length !== words[i+1].length){
                 return false
             }
        for(let j=0;j<words[i].length;j++){
@@ -24,5 +24,4 @@ let letterOrder = new Array(order.length).fill(0);
        }
     }
     return true
-
 };

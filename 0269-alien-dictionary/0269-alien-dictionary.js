@@ -6,12 +6,14 @@ var alienOrder = function(words) {
        const adj = new Map();
     for (const word of words) {
         for (const letter of word) {
-            adj.set(letter, new Set());
+            if(!adj.get(letter)){
+                   adj.set(letter, new Set());
+            }
+         
         }
     }
-
     for (let i = 0; i < words.length - 1; i++) {
-        if (words[i].startsWith(words[i + 1]) && words[i].length > words[i + 1].length) {
+        if (words[i].startsWith(words[i + 1]) && words[i].length !== words[i + 1].length) {
             return "";
         }
         for (let j = 0; j < words[i].length; j++) {
@@ -22,7 +24,6 @@ var alienOrder = function(words) {
             }
         }
     }
-
     const processed = new Map();
     const res = [];
 
@@ -34,7 +35,6 @@ var alienOrder = function(words) {
 
     return res.join("");
 }
-
 function topSort(currentNode, adj, processed, res) {
     if (processed.has(currentNode)) {
         return processed.get(currentNode);

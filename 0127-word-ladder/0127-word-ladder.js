@@ -19,6 +19,7 @@ const adjList = new Map();
             }
         } 
     }
+    console.log(adjList)
     let queue=[beginWord];
     let count=1;
     let seen=new Set([beginWord]);

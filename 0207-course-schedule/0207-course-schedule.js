@@ -4,33 +4,36 @@
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
-    let requiredMap={};
-    let leaves=new Array(numCourses).fill(0)
-    for(const pairs of prerequisites) {
-        let first=pairs[1];
-        let second=pairs[0];
-        if(first in requiredMap){
-            requiredMap[first].push(second);
+    let adjList = new Map();
+    let hasParent = new Array(numCourses).fill(0);
+    for(const [to, from] of prerequisites){
+        hasParent[to]++
+        if(!adjList.has(from)){
+            adjList.set(from,[to]);
         }else{
-            requiredMap[first]=[second];
+            let neighbors = adjList.get(from);
+            neighbors.push(to);
+            adjList.set(from,neighbors);
         }
-        leaves[second]++
-    }
-    let queue=[];
+    };
+    let queue=[]
     let order=[];
-for(let i=0;i<leaves.length;i++){
-    if(leaves[i]===0)queue.push(i)
-}
-    while(queue.length){
-        let second=queue.shift();
-        if(second in requiredMap ){
-            for(const child of requiredMap[second]){
-                leaves[child]--;
-                if(leaves[child]===0)queue.push(child);
-            }
-        }
-        order.push(second);
+    for(let i=0;i<hasParent.length;i++){
+        if(hasParent[i]===0)queue.push(i);
     }
-    return numCourses === order.length
-};
+    while(queue.length){
+        let node = queue.shift();
+        if(adjList.get(node)){
+                  for(const child of adjList.get(node)){
+               hasParent[child]--
+                if(hasParent[child]===0){
+                    queue.push(child)
+            }
+       
+        }  
+        }
   
+        order.push(node)
+    }
+    return order.length===numCourses
+};

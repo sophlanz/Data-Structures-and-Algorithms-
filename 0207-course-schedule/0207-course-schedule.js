@@ -16,24 +16,29 @@ var canFinish = function(numCourses, prerequisites) {
             adjList.set(from,neighbors);
         }
     };
-    let queue=[]
-    let order=[];
-    for(let i=0;i<hasParent.length;i++){
-        if(hasParent[i]===0)queue.push(i);
-    }
-    while(queue.length){
-        let node = queue.shift();
-        if(adjList.get(node)){
-                  for(const child of adjList.get(node)){
-               hasParent[child]--
-                if(hasParent[child]===0){
-                    queue.push(child)
-            }
-       
-        }  
+    let fullyExplored = new Map();
+    let order=[]
+    const DFS = (node)=>{
+        if(fullyExplored.has(node)){
+            return fullyExplored.get(node)
         }
-  
+        fullyExplored.set(node,false);
+        if(adjList.has(node)){
+            for(const child of adjList.get(node)){
+                if(!DFS(child))return false
+            }
+        }
+        fullyExplored.set(node,true)
         order.push(node)
+        return true;
+        
     }
-    return order.length===numCourses
+    if(!hasParent.includes(0))return false
+    for(let i=0;i<hasParent.length;i++){
+        if(hasParent[i]===0) {
+           if(!DFS(i)) return false
+        }
+    }
+   return order.length === numCourses
+    
 };

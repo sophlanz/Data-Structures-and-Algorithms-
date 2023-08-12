@@ -3,32 +3,14 @@
  * @return {number}
  */
 var countSubstrings = function(s) {
-    let count=0
-    const isPalindrome = (string)=>{
-        let l=0,r=string.length-1;
-        while(l<r){
-            if(string[l]==string[r]){
-                l++
-                r--
-            }else{
-                return false
-            }
+    let res = 0;
+    let dp = new Array(s.length).fill(0).map(()=> new Array(s.length).fill(0))
+    for (let i = s.length - 1; i >= 0; i--) {
+        for (let j = i; j < s.length; j++) {
+            dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i  + 1 < 3 || dp[i + 1][j - 1]);
+            if(dp[i][j]) res++;
         }
-        return true;
     }
-    const DFS = (index)=>{
-        if(index>s.length){
-            return;
-        }
-        for(let i=index;i<s.length;i++) {
-            let newString = s.slice(index,i+1);
-            if(isPalindrome(newString)){
-                count++
-            }
-        }
-          DFS(index+1)
-    }
-    DFS(0)
-    return count
+    return res;
 
 };

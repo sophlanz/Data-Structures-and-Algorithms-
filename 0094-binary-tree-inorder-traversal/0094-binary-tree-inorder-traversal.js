@@ -11,13 +11,18 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
+    let stack = [];
+    let curr=root;
     let res=[];
-    const DFS = (node)=>{
-        if(!node)return;
-        DFS(node.left)
-        res.push(node.val)
-        DFS(node.right)
+    while(curr || stack.length){
+        if(curr){
+            stack.push(curr);
+            curr=curr.left
+        }else{
+            let node=stack.pop();
+            res.push(node.val);
+            curr=node.right
+        }
     }
-    DFS(root)
     return res
 };

@@ -17,7 +17,7 @@ var postorderTraversal = function(root) {
     let res=[];
     while(stack1.length){
         let node=stack1.pop();
-        stack2.push(node.val);
+        res.unshift(node.val)
         if(node.left){
             stack1.push(node.left);
         }
@@ -25,5 +25,5 @@ var postorderTraversal = function(root) {
             stack1.push(node.right);
         }
     }
-  return stack2.reverse()
+return res;
 };

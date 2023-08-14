@@ -3,32 +3,34 @@
  * @return {boolean}
  */
 var canPartition = function(nums) {
+    //parameters sum and index
+    //base can sum===0 or index>nums.length
 let sum=0;
     for(let i=0;i<nums.length;i++){
         sum += nums[i];
     }
-    if(sum % 2 !== 0){
-        return false;
+    if(sum % 2 !== 0)return false
+    let half=(sum/2)
+    let dp = new Array(nums.length).fill(null).map(()=> new Array(half+1))
+    for(let i=0;i<nums.length;i++){
+        dp[i][0]=true;
     }
-   let dp = [];
-    const DFS = (index,sum) => {
-        dp[index]=dp[index] ||[];
-        if(sum === 0)return true;
-        if( nums.length === 0 || index >= nums.length) return false;
-        if(dp[index][sum] === undefined){
-              if(sum - nums[index]>=0){
-            if(DFS(index+1, sum-nums[index])){
-                dp[index][sum]=true
-               return true;
-            }      
+ 
+    for(let i=0;i<nums.length;i++){
+        for(let j=1;j<=half;j++){
+           if(i-1>=0){
+               dp[i][j]= dp[i-1][j] || (j >= nums[i] ? dp[i - 1][j - nums[i]] : false);
+           }else{
+               dp[i][j]= nums[i]===j
+           }
+                if(j===half && dp[i][j]) {
+                    return true;
+                }
+            }
         }
-             dp[index][sum]=DFS(index+1,sum)  
-        }
-         return dp[index][sum]
-    }
-    return DFS(0, sum/2)
-};
-
+    
+    return false;
+};      
 
 
 

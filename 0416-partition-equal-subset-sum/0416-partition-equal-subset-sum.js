@@ -10,19 +10,21 @@ let sum=0;
     if(sum % 2 !== 0){
         return false;
     }
-   let memo = {};
+   let dp = [];
     const DFS = (index,sum) => {
-       if(`${index}+${sum}`in memo) {
-           return memo[`${index}+${sum}`]
-       }
+     dp[index]=dp[index] ||[];
         if(sum === 0)return true;
         if( nums.length === 0 || index >= nums.length) return false;
-        if(sum - nums[index]>=0){
+        if(dp[index][sum] === undefined){
+              if(sum - nums[index]>=0){
             if(DFS(index+1, sum-nums[index])){
+                dp[index][sum]=true;
                 return true;
             }
         }
-        return memo[`${index}+${sum}`]=DFS(index+1,sum);
+        }
+      
+        return dp[index][sum]=DFS(index+1,sum);
     }
     return DFS(0, sum/2)
 };

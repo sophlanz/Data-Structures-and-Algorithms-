@@ -23,13 +23,11 @@ let sum=0;
            }else{
                dp[i][j]= nums[i]===j
            }
-                if(j===half && dp[i][j]) {
-                    return true;
-                }
+              
             }
         }
     
-    return false;
+    return dp[nums.length-1][half];
 };      
 
 

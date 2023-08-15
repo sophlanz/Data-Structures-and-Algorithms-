@@ -9,25 +9,27 @@ let sum=0;
     }
     if(sum % 2 !== 0)return false;
     let half=sum/2;
-    let dp=new Array(nums.length).fill(false).map(()=>new Array(half+1).fill(false));
-    for(let row=0;row<nums.length;row++){
-        dp[row][0]=true;
-    };
-    for(let col=0;col<=half;col++){
-        dp[0][col] = nums[0] === col
-    };
-    for(let i=1;i<nums.length;i++){
-        for(let j=1;j<=half;j++){
-            if(dp[i-1][j]){
-                dp[i][j]=true
-            }else{
-                if(j > nums[i]) {
-                    dp[i][j]= dp[i-1][j-nums[i]]
-                }
-            }
+    let memo ={};
+    const DFS = (index,total)=>{
+        if(`${index}+${total}`in memo){
+            return memo[`${index}+${total}`];
         }
+        if(total ===0)return true;
+        if(index>nums.length)return false;
+  
+             if(total-nums[index]>=0 ){
+              if(DFS(index+1,total-nums[index])){
+                   memo[`${index}+${total}`]=true
+                  return true;
+              }
+         }
+            memo[`${index}+${total}`] = DFS(index+1,total)
+     
+       
+     return memo[`${index}+${total}`] 
+        
     }
-    return dp[nums.length-1][half]
+   return DFS(0,half)
 };      
 
 

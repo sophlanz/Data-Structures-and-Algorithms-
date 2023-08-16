@@ -12,13 +12,22 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-    if(!p && !q){
-        return true
+    let sameTree=true
+    const DFS = (node1,node2)=>{
+        if(!node1 && !node2)return null;
+        if(!node1 || ! node2){
+            sameTree=false
+            return
+        }
+        
+        if(node1.val !== node2.val) {
+            sameTree=false
+            return
+        }
+        let left = DFS(node1.left,node2.left);
+        let right = DFS(node1.right,node2.right);
+
     }
-    if(!p || !q)return false
-    if(p.val != q.val )return false
-
-   return  isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
-
-
+     DFS(p,q)
+    return sameTree
 };

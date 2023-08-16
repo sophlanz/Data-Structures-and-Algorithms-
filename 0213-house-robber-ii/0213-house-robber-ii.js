@@ -13,9 +13,8 @@ var rob = function(nums) {
       dp[1]=num[1]
       dp[2]=num[0] + num[2]
       for(let i=3;i<num.length;i++){
-          dp[i] = Math.max(num[i]+dp[i-2], num[i] + dp[i-3])
+         dp[i] = Math.max(num[i] + dp[i-2], num[i] + dp[i-3])
       }
-          console.log(dp)
       return Math.max(...dp)
   
   }

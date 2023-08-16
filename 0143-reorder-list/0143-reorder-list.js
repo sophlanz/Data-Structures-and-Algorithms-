@@ -11,37 +11,35 @@
  */
 
 var reorderList = function(head) {
-    if (!head) return;
-    let curr = head, middle = findMiddle(head);
-    let rev = reverseList(middle.next);
-   while(rev){
-       let temp = curr.next;
-       curr.next = rev;
-       rev=rev.next;
-       curr.next.next=temp
-       curr=temp
-   }
-    middle.next = null;
-};
-
-var findMiddle = function(head) {
-    if (!head) return;
-    let middle = head;
-    while (head && head.next) {
-        head = head.next.next;
-        middle = middle.next;
+ if(!head)return null;
+    let fast=head;
+    let slow=head;
+    while(fast && fast.next){
+        fast = fast.next.next;
+        slow = slow.next;
+    };
+    let mid=slow;
+    const reverse = (node)=>{
+        let curr=node;
+        let prev=null;
+        while(curr){
+            let temp=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=temp;
+        }
+        return prev;
     }
-    return middle;
-}
-
-var reverseList = function(head) {
-    if (!head) return;
-    let prev = null;
-    while (head) {
-        const saved = head.next;
-        head.next = prev;
-        prev = head;
-        head = saved;
+    let curr2 = reverse(mid);
+//will now have mid as last node, because it no longer points to anything. 
+    let curr1=head;
+//until cur2.next, otherwise, last node of reverse list (mid) would end up pointing to itself. 
+    while(curr2.next){
+        let temp = curr1.next;
+        curr1.next=curr2;
+        curr2 = curr2.next;
+        curr1.next.next=temp;
+        curr1=temp;
     }
-    return prev;
+    return head
 }

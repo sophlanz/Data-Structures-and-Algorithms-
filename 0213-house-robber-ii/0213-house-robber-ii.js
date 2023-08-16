@@ -3,21 +3,23 @@
  * @return {number}
  */
 var rob = function(nums) {
-    if (nums.length == 1) return nums[0]
-    let prev1 = 0, cur1 = 0
-    let prev2 = 0, cur2 = 0
-    let temp
-    for (let i = 1; i < nums.length; i++) {
-        const n1 = nums[i-1]
-        const n2 = nums[i]
-        temp=cur1
-        cur1 = Math.max(n1 + prev1, cur1)
-        prev1=temp
-        temp=cur2
-        cur2 = Math.max(n2 + prev2, cur2)
-        prev2=temp
+    if(nums.length <=3){
+        return Math.max(...nums)
     }
-    return Math.max(cur1, cur2)
- 
+  const rob = (num)=>{
+      console.log(num)
+      let dp=[];
+      dp[0]=num[0];
+      dp[1]=num[1]
+      dp[2]=num[0] + num[2]
+      for(let i=3;i<num.length;i++){
+          dp[i] = Math.max(num[i]+dp[i-2], num[i] + dp[i-3])
+      }
+          console.log(dp)
+      return Math.max(...dp)
+  
+  }
+
+  return Math.max(rob(nums.slice(0,nums.length-1)),rob(nums.slice(1)) )
 };
 

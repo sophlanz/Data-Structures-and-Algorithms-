@@ -11,21 +11,22 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    if(!root)return 0;
-let queue=[root],
-    maxDepth=0;
+    if(!root)return 0
+    let queue=[root];
+    let depth=0;
     while(queue.length){
-        let levelSize=queue.length;
-        maxDepth++;
+        let levelSize = queue.length;
+        depth++;
         for(let i=0;i<levelSize;i++){
-            let node=queue.shift();
+            let node = queue.shift();
             if(node.left){
                 queue.push(node.left);
-            }
+            };
             if(node.right){
                 queue.push(node.right);
             }
         }
+        
     }
-    return maxDepth
+    return depth
 };

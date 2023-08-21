@@ -11,22 +11,15 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    if(!root)return 0
-    let queue=[root];
-    let depth=0;
-    while(queue.length){
-        let levelSize = queue.length;
-        depth++;
-        for(let i=0;i<levelSize;i++){
-            let node = queue.shift();
-            if(node.left){
-                queue.push(node.left);
-            };
-            if(node.right){
-                queue.push(node.right);
-            }
-        }
-        
+    let maxPath=0;
+    const DFS= (node) => {
+        if(!node)return 0;
+       let left = DFS(node.left) + 1;
+       let right = DFS(node.right) + 1;
+       let max = Math.max(left,right);
+        maxPath=Math.max(maxPath,max)
+        return max;
     }
-    return depth
+    DFS(root);
+    return maxPath
 };

@@ -11,15 +11,15 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    let maxPath=0;
-    const DFS= (node) => {
+    let max=0;
+    const DFS = (node)=>{
         if(!node)return 0;
-       let left = DFS(node.left) + 1;
-       let right = DFS(node.right) + 1;
-       let max = Math.max(left,right);
-        maxPath=Math.max(maxPath,max)
-        return max;
+        const depthLeft = 1 +DFS(node.left);
+        const depthRight = 1 + DFS(node.right);
+        const greatestDepth = Math.max(depthLeft,depthRight)
+        max = Math.max(max,greatestDepth)
+        return greatestDepth
     }
     DFS(root);
-    return maxPath
+    return max
 };

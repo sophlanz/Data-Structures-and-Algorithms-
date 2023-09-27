@@ -11,15 +11,16 @@
  * @return {number}
  */
 var diameterOfBinaryTree = function(root) {
-    //calculating the max path for each node
-    let max=0
-  const DFS = (node)=>{
-      if(!node)return 0;
-      let left=DFS(node.left);              //# of edges to left
-      let right=DFS(node.right);            //# of edges to right
-       max = Math.max(max, left + right)    // path size
-     return Math.max(left, right) + 1       //# of edges between current node and bottom of tree
-  }
+    let max=0;
+    const DFS = (node) => {
+    if(!node)return 0;
+    const left = node.left ? 1 + DFS(node.left) : 0 ;
+    const right = node.right ? 1 + DFS(node.right): 0;
+    const maxDepth = left + right;
+    max = Math.max(maxDepth,max)
+    return Math.max(left,right)
+        
+    }
 DFS(root);
-return max
+    return max
 };

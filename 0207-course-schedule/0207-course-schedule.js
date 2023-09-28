@@ -40,5 +40,4 @@ var canFinish = function(numCourses, prerequisites) {
         }
     }
    return order.length === numCourses
-    
 };

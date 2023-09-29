@@ -4,40 +4,36 @@
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
-    let adjList = new Map();
-    let hasParent = new Array(numCourses).fill(0);
-    for(const [to, from] of prerequisites){
-        hasParent[to]++
-        if(!adjList.has(from)){
-            adjList.set(from,[to]);
+ let reqList = new Map();
+ let hasParent = new Array(numCourses).fill(0);
+    for(const [course,req]of prerequisites){
+        hasParent[course]+=1;
+        if(!reqList.get(req)){
+            reqList.set(req,[course]);
         }else{
-            let neighbors = adjList.get(from);
-            neighbors.push(to);
-            adjList.set(from,neighbors);
+            let neighbors = reqList.get(req);
+            neighbors.push(course);
+            reqList.set(req,neighbors);
         }
     };
-    let fullyExplored = new Map();
-    let order=[]
-    const DFS = (node)=>{
-        if(fullyExplored.has(node)){
-            return fullyExplored.get(node)
+    let queue=[];
+    for(let i=0;i<hasParent.length;i++){
+        if(hasParent[i]===0){
+            queue.push(i);
         }
-        fullyExplored.set(node,false);
-        if(adjList.has(node)){
-            for(const child of adjList.get(node)){
-                if(!DFS(child))return false
+    };
+    let order=[];
+    while(queue.length){
+        const node = queue.shift();
+        if(reqList.get(node)){
+            for(const child of reqList.get(node)){
+                hasParent[child]--;
+                if(hasParent[child]===0){
+                    queue.push(child);
+                }
             }
         }
-        fullyExplored.set(node,true)
-        order.push(node)
-        return true;
-        
+        order.push(node);
     }
-    if(!hasParent.includes(0))return false
-    for(let i=0;i<hasParent.length;i++){
-        if(hasParent[i]===0) {
-           if(!DFS(i)) return false
-        }
-    }
-   return order.length === numCourses
+    return order.length === numCourses
 };

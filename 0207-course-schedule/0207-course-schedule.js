@@ -4,36 +4,36 @@
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
- let reqList = new Map();
- let hasParent = new Array(numCourses).fill(0);
-    for(const [course,req]of prerequisites){
-        hasParent[course]+=1;
-        if(!reqList.get(req)){
-            reqList.set(req,[course]);
+    let hasParent = new Array(numCourses).fill(0);
+    let adjList = new Map();
+    for(const [to,from] of prerequisites){
+        hasParent[to]+=1
+        if(!adjList.get(from)){
+            adjList.set(from,[to])
         }else{
-            let neighbors = reqList.get(req);
-            neighbors.push(course);
-            reqList.set(req,neighbors);
+            let neighbors = adjList.get(from);
+            neighbors.push(to);
+            adjList.set(from,neighbors);
         }
-    };
-    let queue=[];
+    }
+    let queue=[]
     for(let i=0;i<hasParent.length;i++){
         if(hasParent[i]===0){
-            queue.push(i);
+            queue.push(i)
         }
     };
-    let order=[];
+    let count=0;
     while(queue.length){
         const node = queue.shift();
-        if(reqList.get(node)){
-            for(const child of reqList.get(node)){
-                hasParent[child]--;
-                if(hasParent[child]===0){
-                    queue.push(child);
+        if(adjList.has(node)){
+            for(const neighbor of adjList.get(node)){
+                hasParent[neighbor]--;
+                if(hasParent[neighbor]===0){
+                    queue.push(neighbor)
                 }
             }
         }
-        order.push(node);
+        count++
     }
-    return order.length === numCourses
+    return numCourses===count
 };

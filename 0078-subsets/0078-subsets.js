@@ -3,13 +3,15 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
-  let subsets=[]
-  const DFS=(subset,index)=> {
-      subsets.push(subset);
-      for(let i=index;i<nums.length;i++){
-          DFS([...subset,nums[i]], i+1)
-      }
-  }
-  DFS([],0)
-  return subsets
+    let subsets =[[]];
+    const DFS = (arr,index)=>{
+        if(index>nums.length)return;
+        for(let i=index;i<nums.length;i++) {
+            const newSubset=[...arr,nums[i]]
+            subsets.push(newSubset)
+            DFS(newSubset,i+1)
+        }
+    }
+    DFS([],0)
+    return subsets
 };

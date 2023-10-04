@@ -4,12 +4,10 @@
  * @return {number[]}
  */
 var topKFrequent = function(nums, k) {
-    let freqMap={};
+    let freqMap = {};
     for(const num of nums){
         num in freqMap ? freqMap[num]++ : freqMap[num]=1;
-    }
-  let sorted= Object.entries(freqMap).sort((a, b) => b[1] - a[1]).map(([key,value]) => key);
-    return sorted.slice(0,k)
-
-    
+    };
+  let values =  Object.entries(freqMap).sort((a,b)=> b[1]-a[1]).map(([key,value])=> key)
+    return values.splice(0,k)
 };

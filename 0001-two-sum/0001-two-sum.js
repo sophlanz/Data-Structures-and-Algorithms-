@@ -4,14 +4,14 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let idxMap={};
+    let idxMap = {};
     for(let i=0;i<nums.length;i++){
-        let num=nums[i];
-        if(i>0){
-            if(target-num in idxMap){
-                return [idxMap[target-num],i ];
-            }
+        const num = nums[i]
+        const valToFind = target-num;
+        if(valToFind in idxMap){
+            return [idxMap[valToFind], i];
+        }else{
+            idxMap[num]=i;
         }
-        idxMap[num]=i;
     }
 };

@@ -3,35 +3,34 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
+    nums.sort((a,b)=>a-b)
     let res=[];
-    nums.sort((a,b)=> a-b);
     for(let i=0;i<nums.length-2;i++){
-        const start = nums[i];
-        let target = -start
+        const num=nums[i]
+        let target = -num
         let front = i+1
-        let back = nums.length-1;
-        while(front<back) {
-            let sum = nums[front]+nums[back];
-            if(sum<target){
-                front++
-            }else if(sum>target){
+        let back=nums.length-1;
+        while(front<back){
+            const sum = nums[front] + nums[back];
+            if(sum>target){
                 back--
+            }else if(sum<target){
+                front++
             }else{
-                const triplet = [start,nums[front],nums[back]]
-                res.push(triplet);
-                while(nums[front] === triplet[1] && front<back){
-                    front++
-                }
-                while(nums[back]===triplet[2] && front<back){
+                const triplet = [nums[i], nums[front], nums[back]];
+                res.push(triplet)
+                while(nums[back] === triplet[2] && back>front){
                     back--
+                }
+                while(nums[front]===triplet[1] && back>front){
+                    front++
                 }
             }
         }
-        while(nums[i+1]=== start && i+1<nums.length){
+        while(nums[i+1]===num){
             i++
         }
     }
-    return res;
+    return res
 };
-
 

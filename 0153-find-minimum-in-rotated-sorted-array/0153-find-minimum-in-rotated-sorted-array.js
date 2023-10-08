@@ -7,12 +7,12 @@ var findMin = function(nums) {
     let best=nums[0];
     while(l<r){
         const mid = Math.floor((l+r)/2);
-        if(nums[l]<nums[mid]){
-            best = Math.min(nums[l],best)
-            l=l+1
+        if(nums[mid] > nums[r]){
+            best = Math.min(nums[r],best)
+            l=mid+1
         }else{
-            best = Math.min(nums[r],best);
-            r--
+            best = Math.min(nums[l],best);
+            r=mid
         }
     }
     return best
